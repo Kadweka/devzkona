@@ -21,5 +21,8 @@ export class CustomersService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/customers', query);
   }
+  createCustomer(payload:any):Observable<any>{
+    return this.http.post(this.baseUrl + '/new_customer', payload)
+  }
 
 }
