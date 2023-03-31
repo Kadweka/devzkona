@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Adding a new employee</div>
+  <div class="d-flex page__box p-3 mt-2">Adding a new Customer/Client</div>
   <div class="page__content shadow p-3 position-relative">
       <app-back-btn></app-back-btn>
 
@@ -20,11 +20,19 @@
                       <input type="text" matInput placeholder="Employee Name" formControlName="name" required>
                   </mat-form-field>
 
-                  <mat-form-field class="width-49" appearance="outline">
+                  <!-- <mat-form-field class="width-49" appearance="outline">
                       <mat-label>
                           <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Country
                       </mat-label>
                       <input type="text" matInput placeholder="Country" formControlName="country_id" required>
+                  </mat-form-field> -->
+                  <mat-form-field appearance="outline" class="width-49">
+                    <mat-label>Country</mat-label>
+                    <mat-select  name="Country" formControlName="country_id">
+                      <mat-option *ngFor="let item of countries" [value]="item.id">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
 
                   <mat-form-field class="width-49" appearance="outline">

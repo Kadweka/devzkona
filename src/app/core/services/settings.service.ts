@@ -17,6 +17,10 @@ export class SettingsService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/category', query);
   }
+  getCountries(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/get_countries', query);
+  }
   createCategories(payload:any): Observable<any> {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/new_category', payload);

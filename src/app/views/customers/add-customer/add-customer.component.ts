@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { EmployeesService } from 'src/app/core/services/employees.service';
+import { SettingsService } from 'src/app/core/services/settings.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -12,14 +13,16 @@ import { EmployeesService } from 'src/app/core/services/employees.service';
 
 export class AddCustomerComponent implements OnInit {
   isLoading = false
+  loadingCountries=false
   employeeFormGroup!: UntypedFormGroup;
   employees!:any[]
-
+  countries:any[]=[]
   constructor(
     private router: Router,
     private formBuilder: UntypedFormBuilder,
     private employeesService:EmployeesService,
     private toastr: ToasterService,
+    private settingService:SettingsService
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +36,27 @@ export class AddCustomerComponent implements OnInit {
       employee_manager: ['', Validators.required],
 
     });
+    this.getCountries()
   }
-
+getCountries(){
+  const payload = {
+    token:localStorage.getItem("access_token"),
+    name:"",
+    limit:100000,
+    offset:0
+  }
+  this.loadingCountries=true
+          // @ts-ignore
+  this.settingService.getCountries(payload).subscribe(res=>{
+    if(res.result.code==200){
+      this.countries=res.result.countries
+      this.loadingCountries=false
+    }
+    else{
+      this.toastr.showWarning(res.result.message,"SOMETHING IS WRONG")
+    }
+  })
+}
   addEmployee(){
     const payload = {
       name: this.employeeFormGroup.get("name")?.value,
