@@ -1,0 +1,72 @@
+<section>
+  <form [formGroup]="taxFormGroup">
+    <h4>Create Tax</h4>
+    <div>
+      <mat-form-field class="width-75" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Name
+        </mat-label>
+        <input type="text" matInput placeholder="Name" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Tax Type
+        </mat-label>
+        <mat-select  name="Tax Type" formControlName="type_tax_use">
+          <mat-option *ngFor="let item of types" [value]="item.code">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Tax Scope
+        </mat-label>
+        <mat-select  name="Journal Scope" formControlName="tax_scope">
+          <mat-option *ngFor="let item of scope" [value]="item.code">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Tax Computation
+        </mat-label>
+        <mat-select  name="Journal Type" formControlName="amount_type">
+          <mat-option *ngFor="let item of amount_types" [value]="item.code">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">money</mat-icon>&nbsp;&nbsp;Amount
+        </mat-label>
+        <input type="text" matInput placeholder="Amount" formControlName="amount" required>
+      </mat-form-field>
+
+
+    </div>
+    <div class="buttons-cont">
+      <button mat-button class="custom-filled-button" type="submit" (click)="addTax()">
+        <mat-spinner matSuffix
+                     *ngIf="isLoading"
+                     diameter="30"
+                     color="accent"
+                     value="60">
+        </mat-spinner>
+        <span>Create Tax</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+      <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+        <span>Cancel</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+    </div>
+
+  </form>
+</section>

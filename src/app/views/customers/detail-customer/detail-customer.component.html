@@ -1,0 +1,72 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Customer Details</div>
+    <div class="page__content shadow p-3 position-relative">
+     <section>
+        <app-back-btn></app-back-btn>
+       <section class="advance-summary-card-container" *ngIf="!isLoading">
+         <app-card-user [userCardData]="userCardData" icon="badge"></app-card-user>
+       </section>
+        <section *ngIf="!isLoading">
+            <mat-tab-group>
+              <mat-tab label="Bio Data">
+                <ul>
+                  <li *ngIf="customerData.national_id">
+                    <mat-icon>person_pin</mat-icon>
+                    <span>National ID: <b>{{customerData.national_id}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.address">
+                    <mat-icon>location_on</mat-icon>
+                    <span>Address: <b>{{customerData.address}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.dob">
+                    <mat-icon>date_range</mat-icon>
+                    <span>DOB: <b>{{customerData.dob | date: 'mediumDate'}}</b></span>
+                  </li>
+
+                  <li *ngIf="customerData.gender">
+                    <mat-icon>person</mat-icon>
+                    <span>Gender: <b>{{customerData.gender ? customerData.gender : 'Male'}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.registration_date">
+                    <mat-icon>date_range</mat-icon>
+                    <span
+                      *ngIf="customerData.registration_date">Rgistration Date: <b>{{customerData.registration_date | date: 'mediumDate' }}</b></span>
+                  </li>
+                </ul>
+              </mat-tab>
+
+
+
+              <mat-tab label="Work Info">
+                <ul>
+                  <li *ngIf="customerData.nssf">
+                    <mat-icon>person_pin</mat-icon>
+                    <span>NSSF: <b>{{customerData.nssf}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.nhif">
+                    <mat-icon>person_pin</mat-icon>
+                    <span>NHIF: <b>{{customerData.nhif}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.kra_pin">
+                    <mat-icon>person_pin</mat-icon>
+                    <span>KRA: <b>{{customerData.kra_pin}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.huduma_number">
+                    <mat-icon>person_pin</mat-icon>
+                    <span>Huduma Number: <b>{{customerData.huduma_number ? customerData.huduma_number : 'N/A'}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.department_name">
+                    <mat-icon>list_alt</mat-icon>
+                    <span>Department: <b>{{customerData.department_name}}</b></span>
+                  </li>
+                  <li *ngIf="customerData.job_title">
+                    <mat-icon>list_alt</mat-icon>
+                    <span>Job Title: <b>{{customerData.job_title}}</b></span>
+                  </li>
+                </ul>
+              </mat-tab>
+            </mat-tab-group>
+        </section>
+     </section>
+    </div>
+  </div>

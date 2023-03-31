@@ -1,0 +1,68 @@
+<section class="table-container">
+  <!-- Table -->
+  <table mat-table [dataSource]="tableDataSource" matSort (matSortChange)="sortTable($event)">
+
+    <ng-container *ngFor="let tableColumn of tableColumns" [matColumnDef]="tableColumn.name">
+
+      <!-- if sortable column header -->
+      <ng-container *ngIf="tableColumn.isSortable; else notSortable">
+        <th mat-header-cell [ngClass]="tableColumn.position === 'right' ? 'txt-center' : ''" *matHeaderCellDef
+            [mat-sort-header]="tableColumn.name">{{tableColumn.name}}</th>
+      </ng-container>
+
+      <!--&lt;!&ndash;       else not sortable &ndash;&gt;-->
+      <ng-template #notSortable>
+        <th mat-header-cell [ngClass]="tableColumn.position === 'right' ? 'txt-center' : ''"
+            *matHeaderCellDef>{{tableColumn.name}}</th>
+      </ng-template>
+      <!-- column data -->
+      <ng-container *ngIf="tableColumn.name === '#'">
+        <td mat-cell *matCellDef="let element; let i = index;">{{i + 1}}</td>
+      </ng-container>
+      <ng-container *ngIf="tableColumn.units === 'number'">
+        <td mat-cell
+            *matCellDef="let element">{{decimalPipe.transform(element | dataPropertyGetter: tableColumn.dataKey, '')}}
+        </td>
+      </ng-container>
+      <ng-container>
+        <td mat-cell [ngClass]="tableColumn.position === 'right' ? 'txt-center' : ''" *matCellDef="let element">
+          {{element | dataPropertyGetter: tableColumn.dataKey}}
+        </td>
+      </ng-container>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Pagination -->
+  <mat-paginator *ngIf="isPageable"
+                 [pageSizeOptions]="paginationSizes"
+                 [pageSize]="defaultPageSize"
+                 showFirstLastButtons>
+  </mat-paginator>
+
+</section>
+
+<!--<mat-card class="table-cards">-->
+<!--  <div *ngFor="let cardTableData of cardData; let i = index;">-->
+<!--    <p><span><i>#</i></span> {{i + 1}}</p>-->
+<!--    <p><span>{{tableColumns[1].name | lowercase}}:</span>{{cardTableData.description}}</p>-->
+<!--    <p><span>{{tableColumns[2].name | lowercase}}:</span>{{cardTableData.price}}</p>-->
+<!--  </div>-->
+<!--</mat-card>-->
+
+<!--RESPONSIVE TABLE CARDS-->
+<mat-card class="table-cards">
+  <div *ngFor="let data of cardData; let i = index;" matRipple matRippleColor="rgba(86, 153, 52, 0.1)"
+       (click)="emitRowAction(data)">
+    <div *ngFor="let col of tableColumns; let i = index;">
+      <span>{{col.name}}:</span>
+      <!--      TODO: FIX THIS-->
+      <!--      <p *ngIf="col.dataKey.includes('date')"> {{datePipe.transform(getCardDataItem(data, i), 'short') }} </p>-->
+      <!--      <p *ngIf="!col.dataKey.includes('date')">{{getCardDataItem(data, i) }}</p>-->
+      <p>{{data | dataPropertyGetter: col.dataKey}}</p>
+    </div>
+  </div>
+</mat-card>

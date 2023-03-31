@@ -1,0 +1,57 @@
+<section>
+  <form [formGroup]="ticketFormGroup">
+    <h4>Create Ticket</h4>
+    <div>
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Type
+        </mat-label>
+        <input type="text" matInput placeholder="Type" formControlName="type" required>
+      </mat-form-field>
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Priority
+        </mat-label>
+        <input type="text" matInput placeholder="Priority" formControlName="priority" required>
+      </mat-form-field>
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">gmail</mat-icon>&nbsp;&nbsp;Module
+        </mat-label>
+        <input type="text" matInput placeholder="Email Address" formControlName="module" required>
+      </mat-form-field>
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">phone</mat-icon>&nbsp;&nbsp;Description
+        </mat-label>
+        <input type="text" matInput placeholder="Description" formControlName="description" required>
+      </mat-form-field>
+    </div>
+    <div class="buttons-cont">
+      <button mat-button class="custom-filled-button" type="submit">
+        <mat-spinner matSuffix
+                     *ngIf="isLoading"
+                     diameter="30"
+                     color="accent"
+                     value="60">
+        </mat-spinner>
+        <span>Create Ticket</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+      <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+        <mat-spinner matSuffix
+                     *ngIf="isLoading"
+                     diameter="30"
+                     color="accent"
+                     value="60">
+        </mat-spinner>
+        <span>Cancel</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+    </div>
+
+  </form>
+</section>

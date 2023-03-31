@@ -1,0 +1,50 @@
+   <section>
+      <form [formGroup]="userFormGroup">
+        <h4>New System User</h4>
+        <div>
+          <mat-form-field class="width-75" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Name
+            </mat-label>
+            <input type="text" matInput placeholder="Name" formControlName="name" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">mail</mat-icon>&nbsp;&nbsp;Email Address
+            </mat-label>
+            <input type="text" matInput placeholder="Email Address" formControlName="email" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">phone</mat-icon>&nbsp;&nbsp;Mobile
+            </mat-label>
+            <input type="text" matInput placeholder="Mobile" formControlName="mobile" required>
+          </mat-form-field>
+        </div>
+        <div class="buttons-cont">
+          <button mat-button class="custom-filled-button" type="submit" (click)="addNewUser()">
+            <mat-spinner matSuffix
+                         *ngIf="isLoading"
+                         diameter="30"
+                         color="accent"
+                         value="60">
+            </mat-spinner>
+            <span>Add User</span>
+            <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+          </button>
+          <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+            <mat-spinner matSuffix
+                         *ngIf="isLoading"
+                         diameter="30"
+                         color="accent"
+                         value="60">
+            </mat-spinner>
+            <span>Cancel</span>
+            <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+          </button>
+        </div>
+
+      </form>
+    </section>

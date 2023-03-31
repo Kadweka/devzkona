@@ -1,0 +1,26 @@
+<section class="mt-4">
+    <div class="main-buttons">
+        <button mat-button class="custom-filled-button" routerLink="./new-employee">
+            <mat-icon>add</mat-icon>
+            New
+        </button>
+          <button mat-button class="custom-outline-button" (click)="reload()">
+            <mat-icon>sync</mat-icon>
+            Reload
+          </button>
+        <button mat-button class="custom-outline-button">
+            <mat-icon>cloud_upload</mat-icon>
+            Import
+        </button>
+
+    </div>
+    <section class="mt-5">
+        <app-table-general [tableData]="generalTableDataArray" [tableColumns]="generalTableColumns"
+            [hasStatusFilter]="false" [isFilterable]="true" [isPageable]="true" [totalLength]="totalElements"
+            [paginationSizes]="[50, 70, 100]" [defaultPageSize]="50" [pageRouterLink]="'employee-details'"
+            (rowAction)="goToDetails($event)" [tableActions]="['Edit']" (sort)="sortData($event)"
+            (tableRowActions)="doTableActions($event)" [hideEmptyMessage]="isLoadingTableData"
+            (pageChangedAction)="onPageChange($event)">
+        </app-table-general>
+    </section>
+</section>

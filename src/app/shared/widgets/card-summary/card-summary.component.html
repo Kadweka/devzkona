@@ -1,0 +1,30 @@
+<mat-card *ngIf="summaryCardData">
+  <div
+    class="icon"
+    [ngStyle]="{ 'background-color': summaryCardData.backgroundColor }"
+  >
+    <mat-icon [ngStyle]="{ color: summaryCardData.color }">{{
+      summaryCardData.icon
+    }}</mat-icon>
+  </div>
+  <div class="summary">
+    <p [ngStyle]="{ color: summaryCardData.color }">
+      {{ summaryCardData.summaryName }}
+    </p>
+    <p *ngIf="isCurrency">
+      {{ summaryCardData.summaryValue | currency: "KSH ":"symbol" }}
+    </p>
+    <p *ngIf="isLitres">{{ summaryCardData.summaryValue | number: "" }} L</p>
+    <p *ngIf="isNumber">{{ summaryCardData.summaryValue | number: "" }}</p>
+    <p
+      *ngIf="isNumberExtra"
+      [ngStyle]="{
+        'font-size': '14px',
+        'font-weight': '400',
+        color: '#333333'
+      }"
+    >
+      Number: {{ summaryCardData.summaryValueExtra }}
+    </p>
+  </div>
+</mat-card>

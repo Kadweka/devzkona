@@ -1,0 +1,72 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">File Details</div>
+  <div class="page__content shadow p-3 position-relative">
+    <section>
+      <app-back-btn></app-back-btn>
+      <section class="advance-summary-card-container" *ngIf="!isLoading">
+        <app-card-user [userCardData]="userCardData" icon="badge"></app-card-user>
+      </section>
+      <section *ngIf="!isLoading">
+        <mat-tab-group>
+          <mat-tab label="Bio Data">
+            <ul>
+              <li *ngIf="fileData.national_id">
+                <mat-icon>person_pin</mat-icon>
+                <span>National ID: <b>{{fileData.national_id}}</b></span>
+              </li>
+              <li *ngIf="fileData.address">
+                <mat-icon>location_on</mat-icon>
+                <span>Address: <b>{{fileData.address}}</b></span>
+              </li>
+              <li *ngIf="fileData.dob">
+                <mat-icon>date_range</mat-icon>
+                <span>DOB: <b>{{fileData.dob | date: 'mediumDate'}}</b></span>
+              </li>
+
+              <li *ngIf="fileData.gender">
+                <mat-icon>person</mat-icon>
+                <span>Gender: <b>{{fileData.gender ? fileData.gender : 'Male'}}</b></span>
+              </li>
+              <li *ngIf="fileData.registration_date">
+                <mat-icon>date_range</mat-icon>
+                <span
+                  *ngIf="fileData.registration_date">Rgistration Date: <b>{{fileData.registration_date | date: 'mediumDate' }}</b></span>
+              </li>
+            </ul>
+          </mat-tab>
+
+
+
+          <mat-tab label="Work Info">
+            <ul>
+              <li *ngIf="fileData.nssf">
+                <mat-icon>person_pin</mat-icon>
+                <span>NSSF: <b>{{fileData.nssf}}</b></span>
+              </li>
+              <li *ngIf="fileData.nhif">
+                <mat-icon>person_pin</mat-icon>
+                <span>NHIF: <b>{{fileData.nhif}}</b></span>
+              </li>
+              <li *ngIf="fileData.kra_pin">
+                <mat-icon>person_pin</mat-icon>
+                <span>KRA: <b>{{fileData.kra_pin}}</b></span>
+              </li>
+              <li *ngIf="fileData.huduma_number">
+                <mat-icon>person_pin</mat-icon>
+                <span>Huduma Number: <b>{{fileData.huduma_number ? fileData.huduma_number : 'N/A'}}</b></span>
+              </li>
+              <li *ngIf="fileData.department_name">
+                <mat-icon>list_alt</mat-icon>
+                <span>Department: <b>{{fileData.department_name}}</b></span>
+              </li>
+              <li *ngIf="fileData.job_title">
+                <mat-icon>list_alt</mat-icon>
+                <span>Job Title: <b>{{fileData.job_title}}</b></span>
+              </li>
+            </ul>
+          </mat-tab>
+        </mat-tab-group>
+      </section>
+    </section>
+  </div>
+</div>

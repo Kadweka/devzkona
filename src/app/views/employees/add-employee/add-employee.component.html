@@ -1,0 +1,79 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Adding a new employee</div>
+    <div class="page__content shadow p-3 position-relative">
+        <app-back-btn></app-back-btn>
+
+        <section>
+            <form [formGroup]="employeeFormGroup">
+                <div>
+                    <!-- <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client Type
+                        </mat-label>
+                        <input type="text" matInput placeholder="Client Type" formControlName="company_type" required>
+                    </mat-form-field> -->
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Employee Name
+                        </mat-label>
+                        <input type="text" matInput placeholder="Employee Name" formControlName="name" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Country
+                        </mat-label>
+                        <input type="text" matInput placeholder="Country" formControlName="country_id" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;City
+                        </mat-label>
+                        <input type="text" matInput placeholder="City" formControlName="city" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Email Address
+                        </mat-label>
+                        <input type="text" matInput placeholder="Email Address" formControlName="email" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Phone
+                        </mat-label>
+                        <input type="text" matInput placeholder="Phone" formControlName="phone" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Department
+                        </mat-label>
+                        <input type="text" matInput placeholder="Department" formControlName="employee_department"
+                            required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Manager
+                        </mat-label>
+                        <input type="text" matInput placeholder="Manager" formControlName="employee_manager" required>
+                    </mat-form-field>
+
+                </div>
+                <div class="buttons-cont">
+                    <button mat-button class="custom-filled-button" type="submit">
+                        <mat-spinner matSuffix *ngIf="isLoading" diameter="30" color="accent" value="60">
+                        </mat-spinner>
+                        <span>Add Employee</span>
+                        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</div>

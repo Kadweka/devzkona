@@ -1,0 +1,33 @@
+//mat-tab {
+//  border: 1px solid #B8B8B8;
+//  border-radius: 16px;
+
+ul {
+    border: 1px solid #B8B8B8;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0 0 0;
+  
+    li {
+      list-style-type: none;
+      padding: 15px 10px;
+      border-bottom: 0.5px solid rgba(85, 153, 51, 0.51);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  
+      &:last-child {
+        border: none;
+      }
+  
+      mat-icon {
+        color: #1e293b;
+        font-size: 20px;
+      }
+    }
+}
+  
+  //}
+  
+  
+  

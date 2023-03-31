@@ -1,0 +1,17 @@
+<section>
+  <div (click)="backClicked()">
+    <mat-icon>arrow_back</mat-icon>
+    Back
+  </div>
+  <div class="buttons-cont" *ngIf="isEditable">
+    <button (click)="emitClickAction('edit')" mat-button class="custom-outline-icon-button"
+            matTooltip="Edit">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="emitClickAction('delete')" mat-button class="custom-outline-icon-button"
+            [matTooltip]="isDeactivate ? 'Deactivate' : 'Delete'">
+      <mat-icon *ngIf="!isDeactivate">delete_forever</mat-icon>
+      <mat-icon *ngIf="isDeactivate">toggle_off</mat-icon>
+    </button>
+  </div>
+</section>

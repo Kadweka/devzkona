@@ -1,0 +1,80 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Adding a new employee</div>
+    <div class="page__content shadow p-3 position-relative">
+        <app-back-btn></app-back-btn>
+
+        <section>
+            <form [formGroup]="tripFormGroup">
+                <div>
+                    <!-- <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client Type
+                        </mat-label>
+                        <input type="text" matInput placeholder="Client Type" formControlName="company_type" required>
+                    </mat-form-field> -->
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client Name
+                        </mat-label>
+                        <input type="text" matInput placeholder="Client Name" formControlName="name" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Related File
+                        </mat-label>
+                        <input type="text" matInput placeholder="Related File" formControlName="relatedfile" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Transport Type
+                        </mat-label>
+                        <input type="text" matInput placeholder="Transport Type" formControlName="transporttype"
+                            required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Date
+                        </mat-label>
+                        <input type="text" matInput placeholder="Date" formControlName="date" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Vehicle Plate No.
+                        </mat-label>
+                        <input type="text" matInput placeholder="Vehicle Plate No." formControlName="vehicleplate"
+                            required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Driver Name
+                        </mat-label>
+                        <input type="text" matInput placeholder="Driver Name" formControlName="drivername" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="width-49" appearance="outline">
+                        <mat-label>
+                            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;TurnBoy Name
+                        </mat-label>
+                        <input type="text" matInput placeholder="TurnBoy Name" formControlName="turnboy" required>
+                    </mat-form-field>
+
+                </div>
+                <div class="buttons-cont">
+                    <button mat-button class="custom-filled-button" type="submit">
+                        <mat-spinner matSuffix *ngIf="isLoading" diameter="30" color="accent" value="60">
+                        </mat-spinner>
+                        <span>Add Employee</span>
+                        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</div>

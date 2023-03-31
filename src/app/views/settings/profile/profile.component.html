@@ -1,0 +1,57 @@
+<section>
+  <mat-spinner
+  style="left: 50%; transform: translate(-50%)"
+  *ngIf="isLoadingUser"
+  diameter="60"
+  color="primary"
+  value="60">
+</mat-spinner>
+<form [formGroup]="userFormGroup" *ngIf="!isLoadingUser">
+    <mat-form-field class="width-75" appearance="outline">
+      <mat-label>
+        <mat-icon class="form-label">person</mat-icon>
+        Email
+      </mat-label>
+      <input type="text" matInput placeholder="Username" formControlName="login">
+    </mat-form-field>
+
+    <mat-form-field class="width-49" appearance="outline">
+      <mat-label>
+        <mat-icon class="form-label">person</mat-icon>
+        Name
+      </mat-label>
+      <input type="text" matInput placeholder="Name" formControlName="name">
+
+    </mat-form-field>
+    <mat-form-field class="width-49" appearance="outline">
+      <mat-label>
+        <mat-icon class="form-label">phone</mat-icon>
+        Mobile
+      </mat-label>
+      <input type="text" matInput placeholder="Mobile" formControlName="mobile">
+    </mat-form-field>
+
+   <!-- <mat-chip-list>
+     <p>My Roles: </p>
+     <mat-chip
+       disableRipple
+       color="accent"
+       *ngFor="let item of myRolesList">
+       {{item.name}}
+     </mat-chip>
+   </mat-chip-list> -->
+    <br>
+   <div class="btn-cont">
+     <button mat-button class="custom-filled-button" (click)="updateMe()">
+       <!-- <span *ngIf="!loading">Edit</span> -->
+       <!-- <mat-spinner
+         *ngIf="loading"
+         diameter="30"
+         color="accent"
+         value="60">
+       </mat-spinner> -->
+       <span>Update Information</span>
+     </button>
+   </div>
+  </form>
+  </section>

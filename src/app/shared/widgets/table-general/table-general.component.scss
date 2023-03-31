@@ -1,0 +1,160 @@
+@import "src/styles";
+//@import "src/app/shared/widgets/dashboard-table/dashboard-table.component";
+
+::ng-deep {
+  .mat-form-field-wrapper {
+    //padding: 0 !important;
+  }
+
+  .mat-form-field-flex {
+    margin: 0 !important;
+  }
+
+  .mat-form-field-infix {
+    display: flex;
+    align-items: center !important;
+  }
+
+  .mat-header-cell {
+    color: #989898;
+  }
+
+}
+
+.table-filters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+
+  ::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+      padding: 4px 0 10px 0 !important;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+
+    }
+  }
+
+  .table-title {
+    font-size: 18px !important;
+    font-weight: 600;
+    margin: 0;
+  }
+
+
+  > div {
+    gap: 10px;
+
+    &:nth-child(1) {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    &:nth-child(2) {
+      form {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+
+    // @include mobile {
+    //   gap: 0;
+    //   &:nth-child(2) {
+    //     margin-bottom: 20px;
+    //   }
+    //   mat-form-field {
+    //     width: 100%;
+    //   }
+    // }
+  }
+}
+
+.table-container {
+  border: 2px solid #F0F0F0;
+  border-radius: 10px;
+  overflow: hidden;
+
+
+  > div {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 1000px;
+    overflow-x: auto;
+  }
+
+  mat-paginator {
+    position: relative;
+    right: 0;
+  }
+}
+
+
+.table-cards {
+  display: none
+}
+
+// @include mobile {
+//   h2 {
+//     background: red;
+//   }
+//   .table-container {
+//     display: none;
+//   }
+//   .table-cards {
+//     display: block;
+//     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12) !important;
+//     border-radius: 10px;
+//     padding: 0 !important;
+
+//     > div {
+//       border-bottom: 0.3px solid rgba(120, 144, 156, 0.22);
+//       padding: 10px 20px;
+//       //background: rgba(86, 153, 52, 0.26);
+
+//       span {
+//         color: #559933;
+//         margin-right: 10px;
+//         font-weight: 300;
+//       }
+
+//       p {
+
+//         &:nth-child(2) {
+//           font-weight: bolder;
+//         }
+
+
+//       }
+//     }
+
+//   }
+
+// }
+
+tr.mat-row:hover {
+  background-color: rgba(10, 5, 71, 0.05);
+  cursor: pointer;
+}
+
+.emptyMessage {
+  width: 100%;
+  text-align: center;
+  color: #78909C;
+  padding: 40px 0;
+
+  h4 {
+    font-weight: 900;
+    margin: 2px;
+  }
+}

@@ -1,0 +1,25 @@
+@import "src/styles";
+
+.main-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+
+  > button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 5px 20px 5px 0;
+    font-weight: normal;
+    font-size: 16px;
+  }
+}
+.filterBtn{
+  margin-top: 20;
+}
+.table-section {
+  margin-top: 10px;
+}

@@ -1,0 +1,41 @@
+<mat-card>
+  <div class="icon">
+    <mat-icon *ngIf="!icon">person</mat-icon>
+    <mat-icon *ngIf="icon">{{icon}}</mat-icon>
+  </div>
+  <div class="summary">
+    <p class="user-id" *ngIf="userCardData.id">
+      {{ userCardData.id | uppercase }}
+    </p>
+    <p class="user-name">{{ userCardData.name | titlecase }}</p>
+    <div>
+      <p *ngIf="userCardData.location">
+        <mat-icon>location_on</mat-icon>
+        {{ userCardData.location | titlecase }}
+      </p>
+      <p *ngIf="userCardData.institution">
+        <mat-icon>business</mat-icon>
+        {{ userCardData.institution | titlecase }}
+      </p>
+      <p *ngIf="userCardData.route">
+        <mat-icon>location_on</mat-icon>
+        {{ userCardData.route | titlecase }}
+      </p>
+      <p *ngIf="userCardData.phone">
+        <mat-icon>phone</mat-icon>
+        {{ userCardData.phone | titlecase }}
+      </p>
+      <p *ngIf="userCardData.email">
+        <mat-icon>email</mat-icon>
+        {{ userCardData.email | lowercase }}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="hasButton" class="user-btn" [routerLink]="buttonURL">
+    <button mat-button class="custom-filled-button" (click)="buttonClick()">
+      <mat-icon>{{ buttonIcon }}</mat-icon>
+      {{ buttonLabel }}
+    </button>
+  </div>
+</mat-card>

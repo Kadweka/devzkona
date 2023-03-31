@@ -1,0 +1,35 @@
+<section>
+    <form [formGroup]="categFormGroup">
+      <h4>Add a new product category</h4>
+      <div>
+        <mat-form-field class="width-75" appearance="outline">
+          <mat-label>
+            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Category Name
+          </mat-label>
+          <input type="text" matInput placeholder="Category Name" formControlName="name" required>
+        </mat-form-field>
+      </div>
+      <div class="buttons-cont">
+        <button mat-button class="custom-filled-button" type="submit" (click)="addNewCategory()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>SUbmit Category</span>
+        </button>
+        <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>Cancel</span>
+          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+        </button>
+      </div>
+
+    </form>
+  </section>

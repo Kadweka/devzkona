@@ -1,0 +1,88 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Opening a new file</div>
+  <div class="page__content shadow p-3 position-relative">
+    <app-back-btn></app-back-btn>
+
+    <section>
+      <form [formGroup]="fileForm">
+        <div>
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client
+            </mat-label>
+            <input type="text" matInput placeholder="First Name" formControlName="customer_id" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Bill Lading Ref
+            </mat-label>
+            <input type="text" matInput placeholder="Last Name" formControlName="bill_ref" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Departure Date
+            </mat-label>
+            <input type="text" matInput placeholder="Last Name" formControlName="dep_date" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Invoice Ref
+            </mat-label>
+            <input type="text" matInput placeholder="Invoice Ref" formControlName="inv_ref" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Arrival Date
+            </mat-label>
+            <input type="text" matInput placeholder="Last Name" formControlName="arr_date" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Journal
+            </mat-label>
+            <input type="text" matInput placeholder="Journal" formControlName="journal_id" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Date
+            </mat-label>
+            <input type="text" matInput placeholder="Last Name" formControlName="date" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Destination Country
+            </mat-label>
+            <input type="text" matInput placeholder="Destination Country" formControlName="country_id" required>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Return Date
+            </mat-label>
+            <input type="text" matInput placeholder="Return Date" formControlName="return_date" required>
+          </mat-form-field>
+
+        </div>
+        <div class="buttons-cont">
+          <button mat-button class="custom-filled-button" type="submit">
+            <mat-spinner matSuffix
+                         *ngIf="isLoading"
+                         diameter="30"
+                         color="accent"
+                         value="60">
+            </mat-spinner>
+            <span>Open New File</span>
+            <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>

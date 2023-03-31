@@ -1,0 +1,48 @@
+<section>
+  <form [formGroup]="chartOfAccountFormGroup">
+    <h4>Create A New Journal</h4>
+    <div>
+      <mat-form-field appearance="outline" class="width-75">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Account Type
+        </mat-label>
+        <mat-select  name="Journal Type" formControlName="user_type_id">
+          <mat-option *ngFor="let item of typesData" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Account Name
+        </mat-label>
+        <input type="text" matInput placeholder="Journal Name" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">qr_code</mat-icon>&nbsp;&nbsp;Account Code
+        </mat-label>
+        <input type="text" matInput placeholder="Journal Code" formControlName="code" required>
+      </mat-form-field>
+
+    </div>
+    <div class="buttons-cont">
+      <button mat-button class="custom-filled-button" type="submit" (click)="addAccount()">
+        <mat-spinner matSuffix
+                     *ngIf="isLoading"
+                     diameter="30"
+                     color="accent"
+                     value="60">
+        </mat-spinner>
+        <span>Create Chart Of Account</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+      <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+        <span>Cancel</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+    </div>
+
+  </form>
+</section>

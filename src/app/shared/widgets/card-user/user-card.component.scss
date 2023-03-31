@@ -1,0 +1,80 @@
+@import "../card-summary/card-summary.component";
+@import "src/styles";
+
+mat-card {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .icon {
+    background: #ECEFF1;
+    width: 150px;
+    height: 150px;
+    border-radius: 1000px;
+    margin-right: 30px;
+
+    mat-icon {
+      color: #1e293b;
+      font-size: 100px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .summary {
+    > p {
+      display: block;
+      margin: 20px 0;
+      line-height: 0.5;
+
+      // @include mobile {
+      //   line-height: 1;
+      // }
+    }
+
+    .user-id {
+      color: #1e293b;
+    }
+
+    .user-name {
+      font-size: 30px !important;
+      font-weight: 600 !important;
+
+    }
+
+    > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0;
+
+      > p {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0 !important;
+        margin: 5px 20px 5px 0;
+        font-weight: normal;
+        font-size: 16px;
+        color: #222222;
+
+        mat-icon {
+          color: #1e293b;
+          margin-right: 10px;
+        }
+
+      }
+    }
+
+  }
+
+  .user-btn {
+    text-align: right;
+    flex-grow: 1;
+  }
+}
+
+

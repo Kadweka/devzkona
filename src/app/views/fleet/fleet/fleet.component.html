@@ -1,0 +1,15 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Fleet Management</div>
+  <div class="page__content shadow p-3 position-relative">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.link"
+      routerLinkActive #rla="routerLinkActive"
+      [routerLinkActiveOptions]="{exact: true}"
+      [active]="rla.isActive"><span>{{link.label}}</span>
+      </a>
+      </nav>
+      <router-outlet></router-outlet>
+  </div>
+</div>

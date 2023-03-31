@@ -1,0 +1,47 @@
+<section>
+    <form [formGroup]="departmentrFormGroup">
+      <h4>New Department</h4>
+      <div>
+        <mat-form-field class="width-49" appearance="outline">
+          <mat-label>
+            <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Name
+          </mat-label>
+          <input type="text" matInput placeholder="Name" formControlName="name" required>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="width-49">
+          <mat-label>Select Manager</mat-label>
+          <mat-select  name="employees" formControlName="manager_id">
+            <mat-option *ngFor="let item of employees" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div class="buttons-cont">
+        <button mat-button class="custom-filled-button" type="submit" (click)="addNewDepartment()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>Submit Departmet</span>
+          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+        </button>
+        <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>Cancel</span>
+          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+        </button>
+      </div>
+
+    </form>
+  </section>

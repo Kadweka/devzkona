@@ -1,0 +1,56 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Trip Details</div>
+    <div class="page__content shadow p-3 position-relative">
+        <section>
+            <app-back-btn></app-back-btn>
+            <section class="advance-summary-card-container" *ngIf="!isLoading">
+                <app-card-user [userCardData]="userCardData" icon="badge"></app-card-user>
+            </section>
+            <section *ngIf="!isLoading">
+                <mat-tab-group>
+                    <mat-tab label="Trip Details">
+                        <ul>
+                            <li *ngIf="employeeData.national_id">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>Client: <b>{{employeeData.national_id}}</b></span>
+                            </li>
+                            <li *ngIf="employeeData.address">
+                                <mat-icon>location_on</mat-icon>
+                                <span>Related File: <b>{{employeeData.address}}</b></span>
+                            </li>
+                            <li *ngIf="employeeData.dob">
+                                <mat-icon>date_range</mat-icon>
+                                <span>Departure Date: <b>{{employeeData.dob | date: 'mediumDate'}}</b></span>
+                            </li>
+
+                            <li *ngIf="employeeData.gender">
+                                <mat-icon>person</mat-icon>
+                                <span>Transport Type: <b>{{employeeData.gender ? employeeData.gender :
+                                        'Male'}}</b></span>
+                            </li>
+                            <li *ngIf="employeeData.registration_date">
+                                <mat-icon>date_range</mat-icon>
+                                <span *ngIf="employeeData.registration_date">Driver Name
+                                    <b>{{employeeData.registration_date | date: 'mediumDate' }}</b></span>
+                            </li>
+                        </ul>
+                    </mat-tab>
+
+
+
+                    <mat-tab label="Trip Expense">
+                        <section class="mt-5">
+                            <app-table-general [tableData]="generalTableDataArray" [tableColumns]="generalTableColumns"
+                                [hasStatusFilter]="false" [isFilterable]="true" [isPageable]="true"
+                                [totalLength]="totalElements" [paginationSizes]="[50, 70, 100]" [defaultPageSize]="50"
+                                [pageRouterLink]="'employee-details'" [tableActions]="['Edit']"
+                                (sort)="sortData($event)" [hideEmptyMessage]="isLoadingTableData"
+                                (pageChangedAction)="onPageChange($event)">
+                            </app-table-general>
+                        </section>
+                    </mat-tab>
+                </mat-tab-group>
+            </section>
+        </section>
+    </div>
+</div>

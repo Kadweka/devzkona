@@ -1,0 +1,37 @@
+<section class="summary-list">
+  <mat-list role="list" class="column-left">
+    <mat-list-item
+      class="list-item"
+      role="listitem"
+      *ngFor="let summary of LHSSummaryData"
+    >
+      <mat-icon class="icon">{{ summary.icon }}</mat-icon>
+      <span class="label">{{ summary.title }}:</span>
+      <span class="text" *ngIf="summary.units === 'currency'">{{ summary.value | currency: ' ' }}</span>
+      <span class="text" *ngIf="summary.units === 'date'">{{ summary.value | date: 'MMM d, y' }}</span>
+      <!--      <span class="text" *ngIf="!summary.isTag">{{ summary.value }}</span>-->
+      <span class="text tag" [style.background-color]="getBackgroundColor(summary.value, summary.tagColors)"
+            *ngIf="summary.isTag">{{ summary.value }}
+      </span>
+      <span class="text" *ngIf="!summary.isTag && !summary.units">{{ summary.value }}</span>
+    </mat-list-item>
+  </mat-list>
+  <mat-list role="list" class="column-right">
+    <mat-list-item
+      class="list-item"
+      role="listitem"
+      *ngFor="let summary of RHSSummaryData"
+    >
+      <mat-icon class="icon">{{ summary.icon }}</mat-icon>
+      <span class="label">{{ summary.title }}:</span>
+      <span class="text" *ngIf="summary.units === 'currency'">{{ summary.value | currency: ' ' }}</span>
+      <span class="text" *ngIf="summary.units === 'date'">{{ summary.value | date: 'MMM d, y' }}</span>
+      <!--      <span class="text" *ngIf="!summary.isTag">{{ summary.value }}</span>-->
+      <span
+        class="text tag" [style.background-color]="getBackgroundColor(summary.value, summary.tagColors)"
+        *ngIf="summary.isTag">{{ summary.value }}
+      </span>
+      <span class="text" *ngIf="!summary.isTag && !summary.units">{{ summary.value }}</span>
+    </mat-list-item>
+  </mat-list>
+</section>

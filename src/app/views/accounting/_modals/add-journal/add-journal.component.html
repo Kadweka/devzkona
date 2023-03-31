@@ -1,0 +1,55 @@
+<section>
+  <form [formGroup]="journalFormGroup">
+    <h4>Create Journal</h4>
+    <div>
+      <mat-form-field class="width-75" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Journal Name
+        </mat-label>
+        <input type="text" matInput placeholder="Journal Name" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Journal Type
+        </mat-label>
+        <mat-select  name="Journal Type" formControlName="type">
+          <mat-option *ngFor="let item of types" [value]="item.code">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">gmail</mat-icon>&nbsp;&nbsp;Journal Code
+        </mat-label>
+        <input type="text" matInput placeholder="Email Address" formControlName="code" required>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="width-49" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">phone</mat-icon>&nbsp;&nbsp;Default Account
+        </mat-label>
+        <input type="text" matInput placeholder="Default Account" formControlName="default_account_id" required>
+      </mat-form-field> -->
+    </div>
+    <div class="buttons-cont">
+      <button mat-button class="custom-filled-button" type="submit" (click)="addJournal()">
+        <mat-spinner matSuffix
+                     *ngIf="isLoading"
+                     diameter="30"
+                     color="accent"
+                     value="60">
+        </mat-spinner>
+        <span>Create Journal</span>
+        <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+      </button>
+      <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+        <span>Cancel</span>
+      </button>
+    </div>
+
+  </form>
+</section>

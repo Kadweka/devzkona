@@ -1,0 +1,62 @@
+<section>
+    <form [formGroup]="productFormGroup">
+      <h4>Add A New Product</h4>
+      <div>
+      
+        <mat-form-field class="width-49" appearance="outline">
+          <mat-label>
+            <mat-icon class="form-label">product</mat-icon>&nbsp;&nbsp;Product Name
+          </mat-label>
+          <input type="text" matInput placeholder="Product Name" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="width-49">
+          <mat-label>Product Type</mat-label>
+          <mat-select  name="employees" formControlName="detailed_type">
+            <mat-option *ngFor="let item of type" [value]="item.code">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="width-49" appearance="outline">
+          <mat-label>
+            <mat-icon class="form-label">money</mat-icon>&nbsp;&nbsp;Fees Charged
+          </mat-label>
+          <input type="text" matInput placeholder="Fees Charged" formControlName="list_price" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="width-49">
+          <mat-label>Select Manager</mat-label>
+          <mat-select  name="employees" formControlName="categ_id">
+            <mat-option *ngFor="let item of categoryData" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="buttons-cont">
+        <button mat-button class="custom-filled-button" type="submit" (click)="addNewProduct()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>Submit Product</span>
+          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+        </button>
+        <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+          <mat-spinner matSuffix
+                       *ngIf="isLoading"
+                       diameter="30"
+                       color="accent"
+                       value="60">
+          </mat-spinner>
+          <span>Cancel</span>
+          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
+        </button>
+      </div>
+
+    </form>
+  </section>

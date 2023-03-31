@@ -1,0 +1,87 @@
+`    <section>
+        <form [formGroup]="serviceFormGroup">
+          <div>
+            <mat-form-field appearance="outline" class="width-49">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon
+                >&nbsp;&nbsp;Service Provider
+              </mat-label>
+              <mat-select name="Service Provider" formControlName="vendor_id">
+                <mat-option *ngFor="let item of vendorData" [value]="item.id">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+           <mat-form-field appearance="outline" class="width-49">
+              <mat-label>Vehicle</mat-label>
+              <mat-select name="Vehicle" formControlName="vehicle_id">
+                <mat-option
+                  *ngFor="let item of vehicleData"
+                  [value]="item.id"
+                >
+                  {{ item.license_plate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+ <mat-form-field appearance="outline" class="width-49">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon
+                >&nbsp;&nbsp;Service Types
+              </mat-label>
+              <mat-select name="Service Types" formControlName="transmission">
+                <mat-option *ngFor="let item of ServiceTypes" [value]="item.id">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="width-49" appearance="outline">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Description
+              </mat-label>
+              <input type="text" matInput placeholder="Description" formControlName="description" >
+            </mat-form-field>
+          
+            <mat-form-field class="width-49" appearance="outline">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Date
+              </mat-label>
+              <input type="text" matInput placeholder="Date" formControlName="date" >
+            </mat-form-field>
+
+            <mat-form-field class="width-49" appearance="outline">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Category
+              </mat-label>
+              <input type="text" matInput placeholder="Category" formControlName="category" >
+            </mat-form-field>
+
+            <mat-form-field class="width-49" appearance="outline">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Category
+              </mat-label>
+              <input type="text" matInput placeholder="Category" formControlName="category" >
+            </mat-form-field>
+
+            <mat-form-field class="width-49" appearance="outline">
+              <mat-label>
+                <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Amount
+              </mat-label>
+              <input type="text" matInput placeholder="Amount" formControlName="amount" >
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="buttons-cont">
+          <button mat-button class="custom-filled-button" type="submit" (click)="addService()">
+            <mat-spinner matSuffix
+                         *ngIf="isLoading"
+                         diameter="30"
+                         color="accent"
+                         value="60">
+            </mat-spinner>
+            <span>Add Customer</span>
+          </button>
+          </div>
+    </section>
