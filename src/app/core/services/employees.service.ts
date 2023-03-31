@@ -18,11 +18,11 @@ export class EmployeesService {
   }
   createEmployee(payload:any): Observable<any> {
     // @ts-ignore
-    return this.http.post(this.baseUrl + '/department', payload);
+    return this.http.post(this.baseUrl + '/create_employee', payload);
   }
   createContract(payload:any): Observable<any> {
     // @ts-ignore
-    return this.http.post(this.baseUrl + '/department', payload);
+    return this.http.post(this.baseUrl + '/create_contract', payload);
   }
   getDepartments(query: QueryParams): Observable<any> {
     // @ts-ignore

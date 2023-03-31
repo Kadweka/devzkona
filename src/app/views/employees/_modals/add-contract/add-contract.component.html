@@ -1,0 +1,173 @@
+<section>
+    <form [formGroup]="contractFormGroup">
+        <div>
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Contract Ref
+            </mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Contract Ref"
+              formControlName="name"
+              
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-label>Employee</mat-label>
+            <mat-select name="Employee" formControlName="employee_id">
+              <mat-option *ngFor="let item of employees" [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-label>Salary Structure</mat-label>
+            <mat-select name="Salary Structure" formControlName="struct_id">
+              <mat-option *ngFor="let item of structure" [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            <mat-label> Start Date</mat-label>
+            <input matInput formControlName="date_start" [matDatepicker]="picker2" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            <mat-label> End Date</mat-label>
+            <input matInput formControlName="date_end" [matDatepicker]="picker2" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;House Allowance
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="House Allowance"
+              formControlName="hra"
+              
+            />
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Name
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Travell Allowance"
+              formControlName="travel_allowance"
+              
+            />
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Medical Allowance
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Medical Allowance"
+              formControlName="medical_allowance"
+              
+            />
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Other Allowance
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Other Allowance"
+              formControlName="other_allowance"
+              
+            />
+          </mat-form-field>
+
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;wage
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Wage"
+              formControlName="wage"
+              
+            />
+          </mat-form-field>
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Sacco Loan
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Sacco Loan"
+              formControlName="sacco_loan"
+              
+            />
+          </mat-form-field>
+
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Sacco Saving
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Sacco Saving"
+              formControlName="sacco_saving"
+              
+            />
+          </mat-form-field>
+
+
+          <mat-form-field class="width-49" appearance="outline">
+            <mat-label>
+              <mat-icon class="form-label">person</mat-icon
+              >&nbsp;&nbsp;Bank Loan
+            </mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Bank Loan"
+              formControlName="bank_loan"
+              
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button class="custom-filled-button" (click)="new_contract()">
+            Submit Contract
+          </button>
+          <button mat-button class="custom-filled-button" (click)="onCloseDialog()">
+            Cancel
+          </button>
+        </div>
+    </form>
+</section>

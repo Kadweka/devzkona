@@ -115,6 +115,7 @@ export class ChartsOfAccountComponent implements OnInit {
       limit: 10,
       offset: 0,
       name:"",
+      type:"",
       token:  localStorage.getItem('access_token')
     };
     this.isLoadingTableData = true;

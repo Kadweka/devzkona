@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url : 'http://192.168.100.40'
-  // base_url : 'http://164.90.227.147:8116'
+  // base_url : 'http://192.168.100.40'
+  base_url : 'http://localhost:8149'
 };
 
 /*

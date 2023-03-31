@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { EmployeesService } from 'src/app/core/services/employees.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { ITableColumnInterface, ITableRowActions } from 'src/app/shared/interfaces/table-interface';
+import { AddContractComponent } from '../_modals/add-contract/add-contract.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contracts',
@@ -23,6 +25,7 @@ export class ContractsComponent implements OnInit {
     private router: Router,
     private employeeService: EmployeesService,
     private toastr: ToasterService,
+        public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -124,5 +127,17 @@ export class ContractsComponent implements OnInit {
   }
   reload(){
     this.getContracts()
+  }
+
+    addItem(event: any): any{
+    const dialogRef = this.dialog.open(AddContractComponent, {
+      panelClass: 'dialogClass',
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe(({reload, data}) => {
+      if (reload) {
+        this.getContracts();
+      }
+    });
   }
 }

@@ -46,9 +46,7 @@ export class AddChartsOfAccountComponent implements OnInit {
     }
     this.loadingTypes=true
         // @ts-ignore
-    this.accountService.getAccountTypes(payload).subscribe(res=>{
-      console.log(res,"THE RESULTS<!!!!!!!!!!!!!11");
-      
+    this.accountService.getAccountTypes(payload).subscribe(res=>{      
       if(res.result.code ==200){
         this.typesData=res.result.account_types
         this.loadingTypes=false

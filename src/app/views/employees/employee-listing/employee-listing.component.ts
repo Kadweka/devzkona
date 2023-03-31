@@ -5,6 +5,8 @@ import { EmployeesService } from 'src/app/core/services/employees.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { ITableColumnInterface, ITableRowActions, ITableSearchFiltersInterface } from 'src/app/shared/interfaces/table-interface';
 import { TableColumnInterface } from 'src/app/shared/interfaces/table-interfaces';
+import { AddEmployeeComponent } from '../_modals/add-employee/add-employee.component';
+import { MatDialog } from '@angular/material/dialog';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -29,6 +31,7 @@ export class EmployeeListingComponent implements OnInit {
   constructor(
     private router: Router,
     private employeeService: EmployeesService,
+    public dialog: MatDialog,
         private toastr: ToasterService,
   ) { }
 
@@ -123,5 +126,16 @@ export class EmployeeListingComponent implements OnInit {
   }
   reload(){
     this.getEmployees()
+  }
+  addItem(event: any): any{
+    const dialogRef = this.dialog.open(AddEmployeeComponent, {
+      panelClass: 'dialogClass',
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe(({reload, data}) => {
+      if (reload) {
+        this.getEmployees();
+      }
+    });
   }
 }

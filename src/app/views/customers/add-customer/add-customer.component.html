@@ -6,27 +6,36 @@
       <section>
           <form [formGroup]="employeeFormGroup">
               <div>
-                  <!-- <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client Type
-                      </mat-label>
-                      <input type="text" matInput placeholder="Client Type" formControlName="company_type" required>
-                  </mat-form-field> -->
-
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Employee Name
-                      </mat-label>
-                      <input type="text" matInput placeholder="Employee Name" formControlName="name" required>
+                <mat-form-field appearance="outline" class="width-49">
+                    <mat-label>Customer Type</mat-label>
+                    <mat-select  name="Customer Type" formControlName="company_type">
+                      <mat-option *ngFor="let item of types" [value]="item.code">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
 
-                  <!-- <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Country
-                      </mat-label>
-                      <input type="text" matInput placeholder="Country" formControlName="country_id" required>
-                  </mat-form-field> -->
-                  <mat-form-field appearance="outline" class="width-49">
+                <mat-form-field class="width-49" appearance="outline">
+                    <mat-label>
+                        <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Customer Name
+                    </mat-label>
+                    <input type="text" matInput placeholder="Customer Name" formControlName="name" required>
+                </mat-form-field>
+                  
+                <mat-form-field class="width-49" appearance="outline">
+                    <mat-label>
+                        <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Mobile
+                    </mat-label>
+                    <input type="text" matInput placeholder="Mobile" formControlName="phone" required>
+                </mat-form-field>
+                  
+                <mat-form-field class="width-49" appearance="outline">
+                    <mat-label>
+                        <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Email
+                    </mat-label>
+                    <input type="text" matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="width-49">
                     <mat-label>Country</mat-label>
                     <mat-select  name="Country" formControlName="country_id">
                       <mat-option *ngFor="let item of countries" [value]="item.id">
@@ -34,49 +43,37 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;City
-                      </mat-label>
-                      <input type="text" matInput placeholder="City" formControlName="city" required>
+                <mat-form-field class="width-49" appearance="outline">
+                    <mat-label>
+                        <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;City/Town
+                    </mat-label>
+                    <input type="text" matInput placeholder="City/Town" formControlName="city" required>
+                </mat-form-field>
+                  
+                <mat-form-field appearance="outline" class="width-49">
+                    <mat-label>Account Receivale"</mat-label>
+                    <mat-select  name="Account Receivale" formControlName="property_account_receivable_id">
+                      <mat-option *ngFor="let item of receivable" [value]="item.id">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Email Address
-                      </mat-label>
-                      <input type="text" matInput placeholder="Email Address" formControlName="email" required>
+                  <mat-form-field appearance="outline" class="width-49">
+                    <mat-label>Account Payable</mat-label>
+                    <mat-select  name="Account Payable" formControlName="property_account_payable_id">
+                      <mat-option *ngFor="let item of payable" [value]="item.id">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
-
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Phone
-                      </mat-label>
-                      <input type="text" matInput placeholder="Phone" formControlName="phone" required>
-                  </mat-form-field>
-
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Department
-                      </mat-label>
-                      <input type="text" matInput placeholder="Department" formControlName="employee_department"
-                          required>
-                  </mat-form-field>
-
-                  <mat-form-field class="width-49" appearance="outline">
-                      <mat-label>
-                          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Manager
-                      </mat-label>
-                      <input type="text" matInput placeholder="Manager" formControlName="employee_manager" required>
-                  </mat-form-field>
-
+                  
               </div>
               <div class="buttons-cont">
-                  <button mat-button class="custom-filled-button" type="submit">
+                  <button mat-button class="custom-filled-button" type="submit" (click)="addCustomer()">
                       <mat-spinner matSuffix *ngIf="isLoading" diameter="30" color="accent" value="60">
                       </mat-spinner>
-                      <span>Add Employee</span>
+                      <span>Add Customer</span>
                       <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
                   </button>
               </div>
