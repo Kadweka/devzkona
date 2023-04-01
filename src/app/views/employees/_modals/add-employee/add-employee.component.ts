@@ -49,24 +49,27 @@ export class AddEmployeeComponent implements OnInit {
     private settingService:SettingsService,
     public dialog: MatDialog,
   ) { }
-
   ngOnInit(): void {
     this.employeeFormGroup1 = this.formBuilder.group({
       name: ['', Validators.required],
       mobile_phone: ['', [Validators.required]],
-      employee_type: [''],
       work_email: [''],
-      department_id: [''],
-      parent_id: [''],
+      birthday: [''],
       gender:[],
-      marital:[]
-
-    });
-    this.employeeFormGroup2 = this.formBuilder.group({
-      country_id: [''],
       identification_id: [''],
       passport_id: [''],
-      birthday: [''],
+      marital:[],
+      country_id: [''],
+    });
+    this.employeeFormGroup2 = this.formBuilder.group({
+      kra:['',[Validators.required]],
+      huduma:[''],
+      nhif:[''],
+      parent_id: [''],
+      nssf:[''],
+      employee_type: [''],
+      department_id: [''],
+      job_title:['',[Validators.required]],
     });
     this.getEmployees()
     this.getDepartments()
@@ -112,18 +115,27 @@ export class AddEmployeeComponent implements OnInit {
   }
   addEmployee(){
     console.log(this.employeeFormGroup1.getRawValue(),this.employeeFormGroup2.getRawValue(),"THE ROW VALUES!!!!!!!11");
+    console.log(this.employeeFormGroup2.getRawValue(),"THE ROW VALUES!!!!!!!222");
     const payload={
-      mobile_phone:this.employeeFormGroup1.get('mobile_phone')?.value,
       name:this.employeeFormGroup1.get('name')?.value,
-      employee_type:this.employeeFormGroup1.get('employee_type')?.value,
+      gender:this.employeeFormGroup1.get('gender')?.value,
+      marital:this.employeeFormGroup1.get('marital')?.value,
+      birthday:this.employeeFormGroup1.get('birthday')?.value,
+      mobile_phone:this.employeeFormGroup1.get('mobile_phone')?.value,
       work_email:this.employeeFormGroup1.get('work_email')?.value,
-      department_id:this.employeeFormGroup1.get('department_id')?.value,
-      parent_id:this.employeeFormGroup1.get('parent_id')?.value,
       country_id:this.employeeFormGroup1.get('country_id')?.value,
       identification_id:this.employeeFormGroup1.get('identification_id')?.value,
       passport_id:this.employeeFormGroup1.get('passport_id')?.value,
-      birthday:this.employeeFormGroup1.get('birthday')?.value,
-      token:localStorage.getItem('access_token')
+      token:localStorage.getItem('access_token'),
+      kra:this.employeeFormGroup2.get('kra')?.value,
+      employee_type:this.employeeFormGroup2.get('employee_type')?.value,
+      huduma:this.employeeFormGroup2.get('huduma')?.value,
+      nhif:this.employeeFormGroup2.get('nhif')?.value,
+      parent_id:this.employeeFormGroup2.get('parent_id')?.value,
+      nssf:this.employeeFormGroup2.get('nssf')?.value,
+      department_id:this.employeeFormGroup2.get('department_id')?.value,
+      job_title:this.employeeFormGroup2.get('job_title')?.value,
+
     }
     if(this.employeeFormGroup1.valid && this.employeeFormGroup2.valid){
       this.isLoading=true
@@ -133,6 +145,8 @@ export class AddEmployeeComponent implements OnInit {
           this.isLoading=false
           this.onCloseDialog({reload:true})
           this.router.navigate([`/employees`])
+        }else{
+          this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG!")
         }
       })
     }else{

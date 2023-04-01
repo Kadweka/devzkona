@@ -32,7 +32,7 @@ export class EmployeeListingComponent implements OnInit {
     private router: Router,
     private employeeService: EmployeesService,
     public dialog: MatDialog,
-        private toastr: ToasterService,
+    private toastr: ToasterService,
   ) { }
 
   ngOnInit(): void {
@@ -85,10 +85,7 @@ export class EmployeeListingComponent implements OnInit {
     ];
   }
 
-  onPageChange(data: any): any {
-    this.page = data?.pageIndex + 1;
-    this.pageSize = data?.pageSize;
-  }
+
 
   doTableActions(action: ITableRowActions): void {
     if (action.action === 'View') {
@@ -101,6 +98,10 @@ export class EmployeeListingComponent implements OnInit {
   }
 
   sortData(sortParameters: Sort): any {
+  }
+    onPageChange(data: any): any {
+    this.page = data?.pageIndex + 1;
+    this.pageSize = data?.pageSize;
   }
   // tslint:disable-next-line:typedef
   getEmployees(){

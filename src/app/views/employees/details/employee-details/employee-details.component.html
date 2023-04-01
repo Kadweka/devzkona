@@ -1,0 +1,75 @@
+        <section>
+            <app-back-btn></app-back-btn>
+            <section class="advance-summary-card-container" *ngIf="!isLoading">
+                <app-card-user [userCardData]="userCardData" icon="badge"></app-card-user>
+            </section>
+            <section *ngIf="!isLoading">
+                <mat-tab-group>
+                    <mat-tab label="Bio Data">
+                        <ul>
+                            <li *ngIf="detailsData.national_id">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>National ID: <b>{{employeeData.national_id}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.passsport">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>Passport No.: <b>{{detailsData.passsport}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.dob">
+                                <mat-icon>date_range</mat-icon>
+                                <span>Dob: <b>{{detailsData.dob | date: 'mediumDate'}}</b></span>
+                            </li>
+
+                            <li *ngIf="detailsData.marital">
+                                <mat-icon>person</mat-icon>
+                                <span>Marital: <b>{{detailsData.marital}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.gender">
+                                <mat-icon>person</mat-icon>
+                                <span>Gender: <b>{{detailsData.gender}}</b></span>
+                            </li>
+                            <!-- <li *ngIf="detailsData.marital">
+                                <mat-icon>person</mat-icon>
+                                <span>Marital: <b>{{detailsData.marital}}</b></span>
+                            </li> -->
+                        </ul>
+                    </mat-tab>
+
+
+
+                    <mat-tab label="Work Info">
+                        <ul>
+                            <li *ngIf="detailsData.nssf">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>NSSF: <b>{{detailsData.nssf}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.nhif">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>NHIF: <b>{{detailsData.nhif}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.kra">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>KRA: <b>{{detailsData.kra}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.huduma_number">
+                                <mat-icon>person_pin</mat-icon>
+                                <span>Huduma Number: <b>{{detailsData.huduma ? detailsData.huduma:
+                                        'N/A'}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.department">
+                                <mat-icon>list_alt</mat-icon>
+                                <span>Department: <b>{{detailsData.department}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.title">
+                                <mat-icon>list_alt</mat-icon>
+                                <span>Job Title: <b>{{detailsData.title}}</b></span>
+                            </li>
+                            <li *ngIf="detailsData.type">
+                                <mat-icon>list_alt</mat-icon>
+                                <span>Employment Type: <b>{{detailsData.type}}</b></span>
+                            </li>
+                        </ul>
+                    </mat-tab>
+                </mat-tab-group>
+            </section>
+        </section>

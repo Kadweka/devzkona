@@ -1,0 +1,50 @@
+<section>
+    <app-back-btn></app-back-btn>
+    <section class="advance-summary-card-container" *ngIf="!isLoading">
+        <app-card-user [userCardData]="userCardData" icon="badge"></app-card-user>
+    </section>
+    <section *ngIf="!isLoading">
+        <mat-tab-group>
+            <mat-tab label="Payment Information">
+                    <ul>
+                        <li *ngIf="contractData.start">
+                            <mat-icon>date_range</mat-icon>
+                            <span>Contract Start: <b>{{contractData.start | date: 'mediumDate'}}</b></span>
+                        </li>
+                        <li *ngIf="contractData.end">
+                            <mat-icon>date_range</mat-icon>
+                            <span>Contract End: <b>{{contractData.end | date: 'mediumDate'}}</b></span>
+                        </li>
+                        <li *ngIf="contractData.wage">
+                            <mat-icon>person</mat-icon>
+                            <span>Salary(P.M): <b>{{contractData.wage | currency:currency}}</b></span>
+                        </li>
+                        <li *ngIf="contractData.bank_loan">
+                            <mat-icon>person_pin</mat-icon>
+                            <span>Bank Loan: <b>{{contractData.bank_loan | currency:currency}}</b></span>
+                        </li>   
+                    </ul>
+            </mat-tab>
+            <mat-tab label="Benefits & Allowances">
+                <ul>
+                    <li *ngIf="contractData.travel_allowance">
+                        <mat-icon>person</mat-icon>
+                        <span>Travel Allowance: <b>{{contractData.travel_allowance | currency:currency}}</b></span>
+                    </li>
+                    <li *ngIf="contractData.sacco_saving">
+                        <mat-icon>person</mat-icon>
+                        <span>Sacco Savings: <b>{{contractData.sacco_saving | currency:currency}}</b></span>
+                    </li>
+                    <li *ngIf="contractData.sacco_loan">
+                        <mat-icon>person</mat-icon>
+                        <span>Sacco Loan: <b>{{contractData.sacco_loan | currency:currency}}</b></span>
+                    </li>
+                    <li *ngIf="contractData.other_allowance">
+                        <mat-icon>person</mat-icon>
+                        <span>Other Allowance: <b>{{contractData.other_allowance | currency:currency}}</b></span>
+                    </li>
+                </ul>
+        </mat-tab>
+        </mat-tab-group>
+    </section>
+</section>

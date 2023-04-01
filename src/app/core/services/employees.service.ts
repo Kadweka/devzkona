@@ -40,4 +40,17 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/structure', query);
   }
+  getEmployeeDetails(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/employee_details', query);
+  }
+  getContractDetails(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/contract_details', query);
+  }
+  getStructureDetails(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/structure_details', query);
+  }
 }
+// employee_details

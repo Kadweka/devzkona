@@ -66,7 +66,7 @@ export class StructuresComponent implements OnInit {
   }
 
   goToDetails(event: any): any {
-    this.router.navigate([`/employees/employee-details/${event.id}`]);
+    this.router.navigate([`/employees/structure-details/${event.id}`]);
   }
 
   sortData(sortParameters: Sort): any {

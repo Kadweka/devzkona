@@ -97,7 +97,7 @@ export class ContractsComponent implements OnInit {
   }
 
   goToDetails(event: any): any {
-    this.router.navigate([`/employees/employee-details/${event.id}`]);
+    this.router.navigate([`/employees/contract-details/${event.id}`]);
   }
 
   sortData(sortParameters: Sort): any {

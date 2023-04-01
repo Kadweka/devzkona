@@ -2,7 +2,7 @@
           <!-- <app-back-btn></app-back-btn> -->
                 <mat-horizontal-stepper linear="false" #stepper>
                     <mat-step [stepControl]="employeeFormGroup1">
-                        <ng-template matStepLabel>Information</ng-template>
+                        <ng-template matStepLabel>Personal Information</ng-template>
                         <form [formGroup]="employeeFormGroup1">
                             <div>
                               <mat-form-field class="width-49" appearance="outline">
@@ -18,6 +18,7 @@
                                   
                                 />
                               </mat-form-field>
+
                               <mat-form-field appearance="outline" class="width-49">
                                 <mat-label>Gender</mat-label>
                                 <mat-select name="Gender" formControlName="gender">
@@ -27,6 +28,40 @@
                                 </mat-select>
                               </mat-form-field>
 
+                              <mat-form-field appearance="outline" class="width-49">
+                                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                                <mat-label> Date of birth</mat-label>
+                                <input matInput formControlName="birthday" [matDatepicker]="picker2" />
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                              </mat-form-field>
+                              
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Pasport Number
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Pasport Number"
+                                  formControlName="passport_id"
+                                  
+                                />
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;National Id
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="National Id"
+                                  formControlName="identification_id"
+                                  
+                                />
+                              </mat-form-field>
                               <mat-form-field appearance="outline" class="width-49">
                                 <mat-label>Marital Status</mat-label>
                                 <mat-select name="Marital Status" formControlName="marital">
@@ -64,28 +99,12 @@
                                 />
                               </mat-form-field>
                             
+                            
+                            
                               <mat-form-field appearance="outline" class="width-49">
-                                <mat-label>Employment Type</mat-label>
-                                <mat-select name="Employment Type" formControlName="employee_type">
-                                  <mat-option *ngFor="let item of employment_type" [value]="item.code">
-                                    {{ item.name }}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-
-                            <mat-form-field appearance="outline" class="width-49">
-                                <mat-label>Department</mat-label>
-                                <mat-select name="Department" formControlName="department_id">
-                                  <mat-option *ngFor="let item of departments" [value]="item.id">
-                                    {{ item.name }}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-
-                              <mat-form-field appearance="outline" class="width-49">
-                                <mat-label>Manager</mat-label>
-                                <mat-select name="Manager" formControlName="parent_id">
-                                  <mat-option *ngFor="let item of employees" [value]="item.id">
+                                <mat-label>Nationality</mat-label>
+                                <mat-select name="Nationality" formControlName="country_id">
+                                  <mat-option *ngFor="let item of country" [value]="item.id">
                                     {{ item.name }}
                                   </mat-option>
                                 </mat-select>
@@ -103,51 +122,107 @@
                     </mat-step>
 
                     <mat-step [stepControl]="employeeFormGroup2">
-                        <ng-template matStepLabel>Information</ng-template>
+                        <ng-template matStepLabel>Work Information</ng-template>
                         <form [formGroup]="employeeFormGroup2">
 
                             <div>
+                              
                               <mat-form-field appearance="outline" class="width-49">
-                                <mat-label>Nationality</mat-label>
-                                <mat-select name="Nationality" formControlName="country_id">
-                                  <mat-option *ngFor="let item of country" [value]="item.id">
+                                <mat-label>Employment Type</mat-label>
+                                <mat-select name="Employment Type" formControlName="employee_type">
+                                  <mat-option *ngFor="let item of employment_type" [value]="item.code">
                                     {{ item.name }}
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
-                              
-                              <mat-form-field class="width-49" appearance="outline">
-                                <mat-label>
-                                  <mat-icon class="form-label">person</mat-icon
-                                  >&nbsp;&nbsp;National Id
-                                </mat-label>
-                                <input
-                                  type="text"
-                                  matInput
-                                  placeholder="National Id"
-                                  formControlName="identification_id"
-                                  
-                                />
-                              </mat-form-field>
-    
-                              <mat-form-field class="width-49" appearance="outline">
-                                <mat-label>
-                                  <mat-icon class="form-label">person</mat-icon
-                                  >&nbsp;&nbsp;Pasport Number
-                                </mat-label>
-                                <input
-                                  type="text"
-                                  matInput
-                                  placeholder="Pasport Number"
-                                  formControlName="passport_id"
-                                  
-                                />
-                              </mat-form-field>
+   
+
                               <mat-form-field appearance="outline" class="width-49">
-                                <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                                <mat-label> Date of birth</mat-label>
-                                <input matInput formControlName="birthday" [matDatepicker]="picker2" />
-                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-label>Manager</mat-label>
+                                <mat-select name="Manager" formControlName="parent_id">
+                                  <mat-option *ngFor="let item of employees" [value]="item.id">
+                                    {{ item.name }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+
+                              <mat-form-field appearance="outline" class="width-49">
+                                <mat-label>Department</mat-label>
+                                <mat-select name="Department" formControlName="department_id">
+                                  <mat-option *ngFor="let item of departments" [value]="item.id">
+                                    {{ item.name }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Kra Number
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Kra Number"
+                                  formControlName="kra"
+                                  
+                                />
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Huduma Number
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Huduma Number"
+                                  formControlName="huduma"
+                                  
+                                />
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Nhif Number
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Nhif Number"
+                                  formControlName="nhif"
+                                  
+                                />
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Nssf Number
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Nssf Number"
+                                  formControlName="nssf"
+                                  
+                                />
+                              </mat-form-field>
+
+                              <mat-form-field class="width-49" appearance="outline">
+                                <mat-label>
+                                  <mat-icon class="form-label">person</mat-icon
+                                  >&nbsp;&nbsp;Job Title
+                                </mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Job Title"
+                                  formControlName="job_title"
+                                  
+                                />
                               </mat-form-field>
                             </div>
                             <div>
