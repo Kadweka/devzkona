@@ -27,8 +27,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="width-49">
-          <mat-label>Select Manager</mat-label>
-          <mat-select  name="employees" formControlName="categ_id">
+          <mat-label>Product Type</mat-label>
+          <mat-select  name="Product Type" formControlName="categ_id">
             <mat-option *ngFor="let item of categoryData" [value]="item.id">
               {{item.name}}
             </mat-option>
@@ -44,7 +44,6 @@
                        value="60">
           </mat-spinner>
           <span>Submit Product</span>
-          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
         </button>
         <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
           <mat-spinner matSuffix
@@ -54,7 +53,6 @@
                        value="60">
           </mat-spinner>
           <span>Cancel</span>
-          <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
         </button>
       </div>
 

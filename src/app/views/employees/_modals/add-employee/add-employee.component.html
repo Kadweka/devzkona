@@ -30,7 +30,7 @@
                               <mat-form-field appearance="outline" class="width-49">
                                 <mat-label>Marital Status</mat-label>
                                 <mat-select name="Marital Status" formControlName="marital">
-                                  <mat-option *ngFor="let item of gender" [value]="item.code">
+                                  <mat-option *ngFor="let item of marital_status" [value]="item.code">
                                     {{ item.name }}
                                   </mat-option>
                                 </mat-select>
