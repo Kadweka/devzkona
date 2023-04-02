@@ -23,7 +23,12 @@ export class EmployeeTabsComponent {
       label:"Salary Structures",
       link: './salary-structures',
       index: 2
-    }
+    },
+    {
+      label:"Payroll & Payslips",
+      link: './payroll',
+      index: 3
+    },
   ];
 
   constructor(private router: Router) {

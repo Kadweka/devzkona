@@ -6,6 +6,7 @@ import { JournalEntriesComponent } from './journal-entries/journal-entries.compo
 import { JournalItemsComponent } from './journal-items/journal-items.component';
 import { JournalsComponent } from './journals/journals/journals.component';
 import { TaxesComponent } from './taxes/taxes/taxes.component';
+import { TrialBalanceComponent } from './trial-balance/trial-balance.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
         {
           path: 'invoices',
           component: JournalEntriesComponent,
+        },
+        {
+          path: 'trial-balance',
+          component: TrialBalanceComponent,
         },
         {
           path: 'bills',

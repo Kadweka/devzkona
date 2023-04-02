@@ -9,6 +9,7 @@ import { EmployeeTabsComponent } from './employee-tabs/employee-tabs.component';
 import { EmployeeDetailsComponent } from './details/employee-details/employee-details.component';
 import { ContractDetailsComponent } from './details/contract-details/contract-details.component';
 import { StrutureRulesComponent } from './details/struture-rules/struture-rules.component';
+import { PayrollComponent } from './payroll/payroll.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
             {
               path: 'list',
               component: EmployeeListingComponent,
+            },
+            {
+              path: 'payroll',
+              component: PayrollComponent,
             },
         ]
       },
