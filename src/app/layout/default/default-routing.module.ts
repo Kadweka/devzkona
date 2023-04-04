@@ -21,7 +21,7 @@ const moduleRoutes: Routes = [
           ),
       },
       {
-        path: 'list',
+        path: 'file',
         // canActivate: [AuthGuard],
         loadChildren: () =>
           import('../../views/home/home.module').then((m) => m.HomeModule),
