@@ -13,6 +13,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 export class AddCategoryComponent implements OnInit {
 
   isLoading = false;
+  isEditing=false
   categFormGroup!: UntypedFormGroup;
   constructor(
     private router: Router,
@@ -27,18 +28,40 @@ export class AddCategoryComponent implements OnInit {
     this.categFormGroup = this.formBuilder.group({
       name: ['', Validators.required]
     });
+    if(this.data){
+      this.isEditing=true
+      this.categFormGroup.patchValue({
+        name:this.data.name
+      })
+    }
   }
   onCloseDialog(dialogData?: any): any {
     const {reload = false, data = null} = dialogData || {};
     this.dialogRef.close({reload, data});
   }
   addNewCategory(){
-    const payload = {
-      token:localStorage.getItem("access_token"),
-      name: this.categFormGroup.get('name')?.value,
-    }
+    this.isLoading=true
     if(this.categFormGroup.valid){
-      this.isLoading=true
+     if(this.isEditing){
+      const payload = {
+        token:localStorage.getItem("access_token"),
+        name: this.categFormGroup.get('name')?.value,
+        category_id:this.data.id
+      }
+      this.categoryService.updateProductCategories(payload).subscribe(res=>{
+      if(res.result.code==200){
+        this.isLoading=false 
+        this.toastr.showSuccess(res.result.message,"SUCCESS")
+        this.onCloseDialog({reload:true})
+      }else{
+        this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
+      }
+      }) 
+     }else{
+      const payload = {
+        token:localStorage.getItem("access_token"),
+        name: this.categFormGroup.get('name')?.value,
+      }
       this.categoryService.createCategories(payload).subscribe(res=>{
       if(res.result.code==200){
         this.isLoading=false 
@@ -48,6 +71,7 @@ export class AddCategoryComponent implements OnInit {
         this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
       }
       }) 
+     }
     }else{
       this.toastr.showWarning("Please fill in all information","VALIDATION ERROR!")
     }

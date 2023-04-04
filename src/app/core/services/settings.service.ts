@@ -39,6 +39,6 @@ export class SettingsService {
   }
   updateProductCategories(payload:any): Observable<any> {
     // @ts-ignore
-    return this.http.post(this.baseUrl + '/update_categories', payload);
+    return this.http.post(this.baseUrl + '/update_category', payload);
   }
 }

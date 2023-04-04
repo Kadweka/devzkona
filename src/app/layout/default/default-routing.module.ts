@@ -8,6 +8,11 @@ const moduleRoutes: Routes = [
     component: DefaultComponent,
     children: [
       {
+          path: '',
+          redirectTo: 'dashboard',
+          pathMatch: 'full'
+        },
+      {
         path: 'dashboard',
         // canActivate: [AuthGuard],
         loadChildren: () =>

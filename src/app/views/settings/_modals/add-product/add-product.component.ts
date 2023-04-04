@@ -12,6 +12,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 })
 export class AddProductComponent implements OnInit {
   isLoading = false;
+  isEditing=false
   productFormGroup!: UntypedFormGroup;
   isLoadingTableData = false;
   categoryData:any[]=[]
@@ -30,6 +31,8 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data,"TESTING");
+    
     this.productFormGroup = this.formBuilder.group({
       detailed_type: ['', Validators.required],
       name: ['', Validators.required],
@@ -37,6 +40,15 @@ export class AddProductComponent implements OnInit {
       categ_id: ['', Validators.required],
     });
     this.getCategories()
+    if(this.data){
+      this.isEditing=true
+      this.productFormGroup.patchValue({
+        detailed_type: this.data.detailed_type,
+        name: this.data.name,
+        list_price:this.data.list_price,
+        categ_id:this.data.categ,
+      })
+    }
   }
   onCloseDialog(dialogData?: any): any {
     const {reload = false, data = null} = dialogData || {};
@@ -57,15 +69,34 @@ export class AddProductComponent implements OnInit {
     })
   }
   addNewProduct(){
-    const payload = {
-      token:localStorage.getItem('access_token'),
-      "name":this.productFormGroup.get("name")?.value,
-      "detailed_type":this.productFormGroup.get("detailed_type")?.value,
-      "list_price":this.productFormGroup.get("list_price")?.value,
-      "categ_id":this.productFormGroup.get("categ_id")?.value,
-    }
+    this.isLoading=true
     if(this.productFormGroup.valid){
-      this.isLoading=true
+     if(this.isEditing){
+      const payload = {
+        token:localStorage.getItem('access_token'),
+        "name":this.productFormGroup.get("name")?.value,
+        "detailed_type":this.productFormGroup.get("detailed_type")?.value,
+        "list_price":this.productFormGroup.get("list_price")?.value,
+        "categ_id":this.productFormGroup.get("categ_id")?.value,
+        "category_id":this.data.id
+      }
+      this.categoryService.updateProduct(payload).subscribe(res=>{
+      if(res.result.code==200){
+        this.isLoading=false 
+        this.toastr.showSuccess(res.result.message,"SOMETHING WENTNWRONG")
+        this.onCloseDialog({reload:true})
+      }else{
+        this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
+      }
+      }) 
+     }else{
+      const payload = {
+        token:localStorage.getItem('access_token'),
+        "name":this.productFormGroup.get("name")?.value,
+        "detailed_type":this.productFormGroup.get("detailed_type")?.value,
+        "list_price":this.productFormGroup.get("list_price")?.value,
+        "categ_id":this.productFormGroup.get("categ_id")?.value,
+      }
       this.categoryService.createProduct(payload).subscribe(res=>{
       if(res.result.code==200){
         this.isLoading=false 
@@ -75,6 +106,7 @@ export class AddProductComponent implements OnInit {
         this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
       }
       }) 
+     }
     }else{
       this.toastr.showWarning("Please fill in all information","VALIDATION ERROR!")
     }

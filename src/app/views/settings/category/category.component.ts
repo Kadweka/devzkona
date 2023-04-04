@@ -55,8 +55,16 @@ export class CategoryComponent implements OnInit {
       this.pageSize = data?.pageSize;
     }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      const dialogRef = this.dialog.open(AddCategoryComponent, {
+        panelClass: 'dialogClass',
+        data: action.element,
+      });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getCategories();
+        }
+      });
     }
   }
   goToDetails(event: any): any {

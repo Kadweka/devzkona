@@ -85,8 +85,16 @@ export class ProductsComponent implements OnInit {
       this.pageSize = data?.pageSize;
     }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      const dialogRef = this.dialog.open(AddProductComponent, {
+        panelClass: 'dialogClass',
+        data: action.element,
+      });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getProducts();
+        }
+      });
     }
   }
   goToDetails(event: any): any {
@@ -100,7 +108,6 @@ export class ProductsComponent implements OnInit {
     // );
   }
   addItem(event: any): any{
-    console.log(event, 'TESTING THE DIALOG!!!!!!!1');
     const dialogRef = this.dialog.open(AddProductComponent, {
       panelClass: 'dialogClass',
       data: event,

@@ -1,6 +1,7 @@
 <section>
     <form [formGroup]="categFormGroup">
-      <h4>Add a new product category</h4>
+      <h4 *ngIf="!isEditing">Add a new product category</h4>
+      <h4 *ngIf="isEditing">Update Product Category Information</h4>
       <div>
         <mat-form-field class="width-75" appearance="outline">
           <mat-label>
@@ -17,7 +18,8 @@
                        color="accent"
                        value="60">
           </mat-spinner>
-          <span>SUbmit Category</span>
+          <span *ngIf="!isEditing">Submit Category</span>
+          <span *ngIf="isEditing">Update Product Category</span>
         </button>
         <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
           <mat-spinner matSuffix
