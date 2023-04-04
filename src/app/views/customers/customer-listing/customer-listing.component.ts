@@ -79,20 +79,15 @@ export class CustomerListingComponent implements OnInit {
     this.pageSize = data?.pageSize;
   }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      this.router.navigate([`/customers/edit-customer/${action.element.id}`]);
     }
   }
   goToDetails(event: any): any {
     this.router.navigate([`/customers/customer-details/${event.id}`]);
   }
 
-  sortData(sortParameters: Sort): any {
-    // this.generalTableDataArray = this.tableSortService.sortData(
-    //   sortParameters,
-    //   this.generalTableDataArray
-    // );
-  }
+  sortData(sortParameters: Sort): any {}
   getfiles(): void{
     const payload = {
       limit: 10,

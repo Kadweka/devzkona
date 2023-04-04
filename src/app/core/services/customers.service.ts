@@ -11,6 +11,7 @@ export interface QueryParams{
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomersService {
   baseUrl = environment.base_url;
 
@@ -24,5 +25,11 @@ export class CustomersService {
   createCustomer(payload:any):Observable<any>{
     return this.http.post(this.baseUrl + '/new_customer', payload)
   }
-
+  updateCustomer(payload:any):Observable<any>{
+    return this.http.post(this.baseUrl + '/update_customer', payload)
+  }
+  getCustomersDetails(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/customer_details', payload);
+  }
 }

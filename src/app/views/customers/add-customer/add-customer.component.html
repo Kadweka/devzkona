@@ -4,7 +4,7 @@
       <app-back-btn></app-back-btn>
 
       <section>
-          <form [formGroup]="employeeFormGroup">
+          <form [formGroup]="customerFormGroup">
               <div>
                 <mat-form-field appearance="outline" class="width-49">
                     <mat-label>Customer Type</mat-label>
@@ -50,7 +50,7 @@
                     <input type="text" matInput placeholder="City/Town" formControlName="city" required>
                 </mat-form-field>
                   
-                <mat-form-field appearance="outline" class="width-49">
+                <mat-form-field appearance="outline" class="width-49" *ngIf="!isEditing">
                     <mat-label>Account Receivale"</mat-label>
                     <mat-select  name="Account Receivale" formControlName="property_account_receivable_id">
                       <mat-option *ngFor="let item of receivable" [value]="item.id">
@@ -59,7 +59,7 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field appearance="outline" class="width-49">
+                  <mat-form-field appearance="outline" class="width-49" *ngIf="!isEditing">
                     <mat-label>Account Payable</mat-label>
                     <mat-select  name="Account Payable" formControlName="property_account_payable_id">
                       <mat-option *ngFor="let item of payable" [value]="item.id">
@@ -73,7 +73,8 @@
                   <button mat-button class="custom-filled-button" type="submit" (click)="addCustomer()">
                       <mat-spinner matSuffix *ngIf="isLoading" diameter="30" color="accent" value="60">
                       </mat-spinner>
-                      <span>Add Customer</span>
+                      <span *ngIf="!isEditing">Add Customer</span>
+                      <span *ngIf="isEditing">Update Customer Information</span>
                       <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
                   </button>
               </div>

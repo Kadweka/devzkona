@@ -23,6 +23,10 @@ const routes: Routes = [
             component: DetailCustomerComponent,
           },
           {
+            path: 'edit-customer/:id',
+            component: AddCustomerComponent,
+          },
+          {
             path: 'new-customer',
             component: AddCustomerComponent,
           },
