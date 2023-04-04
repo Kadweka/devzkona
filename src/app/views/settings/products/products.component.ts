@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
       {
         name: 'PRICE',
         dataKey: 'list_price',
-        position: 'center',
+        position: 'left',
         units:'currency',
         isSortable: true,
         searchKey: 'AMOUNT'

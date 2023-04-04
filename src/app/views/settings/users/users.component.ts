@@ -51,7 +51,7 @@ export class UsersComponent implements OnInit {
       {
         name: 'MOBILE',
         dataKey: 'mobile',
-        position: 'center',
+        position: 'left',
         isSortable: true,
         searchKey: 'MOBILE'
       },
@@ -75,8 +75,53 @@ export class UsersComponent implements OnInit {
       this.pageSize = data?.pageSize;
     }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    const payload = {
+      "token":localStorage.getItem('access_token'),
+      "name":action.element.name,
+      "email":action.element.email,
+      "mobile":action.element.mobile,
+      "user_id":action.element.id,
+      "state":"archived"
+    }
+    if(action.action === 'DEACTIVATE') {
+        if(action.element.state=="archived"){
+          this.toastr.showWarning("This user is alread inactive","DEACTIVATION ERROR")
+        }else{
+          this.authService.updateMe(payload).subscribe(res=>{
+            if(res.result.code==200){
+              this.toastr.showSuccess(res.result.message,"SUCCESS")
+              this.getUsers()
+            }else{
+              this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG")
+            }
+          })
+        }
+    }else if(action.action==="ACTIVATE"){
+      const payload = {
+        "token":localStorage.getItem('access_token'),
+        "name":action.element.name,
+        "email":action.element.email,
+        "mobile":action.element.mobile,
+        "user_id":action.element.id,
+        "state":"active"
+      }
+      if(action.element.state=="active"){
+        this.toastr.showWarning("This user is already active","ACTIVATION ERROR")
+      }else{
+        this.authService.updateMe(payload).subscribe(res=>{
+          if(res.result.code==200){
+            this.toastr.showSuccess(res.result.message,"SUCCESS")
+            this.getUsers()
+          }else{
+            this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG")
+          }
+        })
+      }
+    }else if(action.action==="EDIT"){
+      const dialogRef = this.dialog.open(AddUsersComponent, {
+        panelClass: 'dialogClass',
+        data: action.element,
+      });
     }
   }
   goToDetails(event: any): any {

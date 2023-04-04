@@ -36,6 +36,13 @@ export class ChartsOfAccountComponent implements OnInit {
   initializeColumns(): void {
     this.generalTableColumns = [
       {
+        name: 'SHORT CODE',
+        dataKey: 'code',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'MOBILE'
+      },
+      {
         name: 'ACCOUNT NAME',
         dataKey: 'name',
         position: 'left',
@@ -49,27 +56,6 @@ export class ChartsOfAccountComponent implements OnInit {
         isSortable: true,
         searchKey: 'EMAIL',
       },
-      {
-        name: 'SHORT CODE',
-        dataKey: 'code',
-        position: 'center',
-        isSortable: true,
-        searchKey: 'MOBILE'
-      },
-      // {
-      //   name: 'CURRENCY',
-      //   dataKey: 'currency_id',
-      //   position: 'left',
-      //   isSortable: true,
-      //   searchKey: 'CURRENCY'
-      // },
-      // {
-      //   name: 'DEFAULT ACCOUNT',
-      //   dataKey: 'default_account',
-      //   position: 'left',
-      //   isSortable: true,
-      //   searchKey: 'COUNTRY'
-      // },
       {
         name: 'ACTIONS',
         dataKey: 'actions',

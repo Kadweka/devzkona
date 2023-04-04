@@ -1,6 +1,7 @@
    <section>
       <form [formGroup]="userFormGroup">
-        <h4>New System User</h4>
+        <h4 *ngIf="!isEditing">New System User</h4>
+        <h4 *ngIf="isEditing">Update User Information</h4>
         <div>
           <mat-form-field class="width-75" appearance="outline">
             <mat-label>
@@ -31,7 +32,8 @@
                          color="accent"
                          value="60">
             </mat-spinner>
-            <span>Add User</span>
+            <span *ngIf="!isEditing">Add User</span>
+            <span *ngIf="isEditing">Update User</span>
             <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
           </button>
           <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">

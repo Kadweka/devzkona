@@ -89,7 +89,7 @@ export class CarServicesComponent implements OnInit {
       {
         name: 'ACTIONS',
         dataKey: 'actions',
-        position: 'left',
+        position: 'right',
         isSortable: false,
       }
     ]

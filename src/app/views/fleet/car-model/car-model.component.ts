@@ -54,24 +54,10 @@ export class CarModelComponent implements OnInit {
         isSortable: true,
         searchKey: 'CLIENT',
       },
-      // {
-      //   name: 'DRIVER',
-      //   dataKey: 'driver',
-      //   position: 'left',
-      //   isSortable: true,
-      //   searchKey: 'TRANSPORT TYPE'
-      // },
-      // {
-      //   name: 'ODOMETER',
-      //   dataKey: 'odometre',
-      //   position: 'left',
-      //   isSortable: true,
-      //   searchKey: 'DRIVER'
-      // },
       {
         name: 'ACTIONS',
         dataKey: 'actions',
-        position: 'left',
+        position: 'right',
         isSortable: false,
       }
     ];

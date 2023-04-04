@@ -39,6 +39,11 @@ export class AccountingComponent implements OnInit {
       link: './bills',
       index: 3
     },
+    {
+      label:"Trial Balance",
+      link: './trial-balance',
+      index: 3
+    },
   ];
 
   constructor(private router: Router) {
