@@ -40,6 +40,10 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/structure', query);
   }
+  getPaylsips(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/get_payslips', query);
+  }
   getEmployeeDetails(query: QueryParams): Observable<any> {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/employee_details', query);

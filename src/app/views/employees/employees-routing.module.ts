@@ -10,6 +10,7 @@ import { EmployeeDetailsComponent } from './details/employee-details/employee-de
 import { ContractDetailsComponent } from './details/contract-details/contract-details.component';
 import { StrutureRulesComponent } from './details/struture-rules/struture-rules.component';
 import { PayrollComponent } from './payroll/payroll.component';
+import { RunningPayrollCenterComponent } from './running-payroll-center/running-payroll-center.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path: 'structure-details/:id',
         component: StrutureRulesComponent,
+      },
+      {
+        path: 'running-payroll',
+        component: RunningPayrollCenterComponent,
       },
       {
         path: 'contract-details/:id',

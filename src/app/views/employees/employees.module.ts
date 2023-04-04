@@ -14,6 +14,7 @@ import { ContractDetailsComponent } from './details/contract-details/contract-de
 import { EmployeeDetailsComponent } from './details/employee-details/employee-details.component';
 import { StrutureRulesComponent } from './details/struture-rules/struture-rules.component';
 import { PayrollComponent } from './payroll/payroll.component';
+import { RunningPayrollCenterComponent } from './running-payroll-center/running-payroll-center.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { PayrollComponent } from './payroll/payroll.component';
     EmployeeDetailsComponent, 
     EditEmployeeComponent, 
     EmployeeListingComponent, 
-    EmployeeTabsComponent, AddContractComponent, ContractDetailsComponent, StrutureRulesComponent, PayrollComponent],
+    EmployeeTabsComponent, AddContractComponent, ContractDetailsComponent, StrutureRulesComponent, PayrollComponent, RunningPayrollCenterComponent],
   imports: [
     EmployeesRoutingModule,
     CommonModule,
