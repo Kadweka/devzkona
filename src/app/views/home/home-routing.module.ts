@@ -5,29 +5,31 @@ import { AddFileComponent } from './add-file/add-file.component';
 import { DetailFileComponent } from './detail-file/detail-file.component';
 import { FileListingComponent } from './file-listing/file-listing.component';
 
-const routes: Routes = [{
-    path: '',
-    component: HomeComponent,
-    children: [
-      {
+const routes: Routes = [
+    {
+      path: '',
+      redirectTo: '/list',
+      pathMatch: 'full'
+    },
+    {
         path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
-      },
-      {
-        path: 'list',
-        component: FileListingComponent,
-      },
-      {
-        path: 'new-file',
-        component: AddFileComponent,
-      },
-      {
-        path: 'file-details/:id',
-        component: DetailFileComponent,
-      },
-    ],
-  },
+        children: [
+          {
+            path: '',
+            component: HomeComponent,
+            data: {returnUrl: window.location.pathname}
+          },
+          {
+            path: 'new-file',
+            component: AddFileComponent,
+          },
+          {
+          path: 'file-details/:id',
+          component: DetailFileComponent,
+          },
+       ],
+   },
+   { path: '**', redirectTo: '/list', pathMatch: 'full' }
 ];
 
 @NgModule({

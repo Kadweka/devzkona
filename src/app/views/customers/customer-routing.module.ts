@@ -16,7 +16,7 @@ const routes: Routes = [
           {
             path: '',
             component: CustomersComponent,
-                data: {returnUrl: window.location.pathname}
+            data: {returnUrl: window.location.pathname}
           },
           {
             path: 'customer-details/:id',
