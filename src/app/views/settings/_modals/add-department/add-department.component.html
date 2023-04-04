@@ -1,6 +1,7 @@
 <section>
     <form [formGroup]="departmentrFormGroup">
-      <h4>New Department</h4>
+      <h4 *ngIf="!isEditing">New Department</h4>
+      <h4 *ngIf="isEditing">Update Department Information</h4>
       <div>
         <mat-form-field class="width-49" appearance="outline">
           <mat-label>
@@ -28,7 +29,8 @@
                        color="accent"
                        value="60">
           </mat-spinner>
-          <span>Submit Departmet</span>
+          <span *ngIf="!isEditing">Submit Departmet</span>
+          <span *ngIf="isEditing">Update Department Information</span>
           <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
         </button>
         <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">

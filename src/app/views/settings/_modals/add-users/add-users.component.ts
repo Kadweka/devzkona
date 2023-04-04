@@ -13,6 +13,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 })
 export class AddUsersComponent implements OnInit {
   isLoading = false;
+  isEditing=false
   userFormGroup!: UntypedFormGroup;
   constructor(
     private router: Router,
@@ -29,6 +30,15 @@ export class AddUsersComponent implements OnInit {
       email: ['', Validators.required],
       mobile: ['', Validators.required],
     });
+    if(this.data.id){
+      this.isEditing=true
+      this.userFormGroup.patchValue({
+        name:this.data.name,
+        email:this.data.email,
+        mobile:this.data.mobile
+      })
+    }
+    
   }
   onCloseDialog(dialogData?: any): any {
     const {reload = false, data = null} = dialogData || {};
@@ -36,21 +46,40 @@ export class AddUsersComponent implements OnInit {
   }
   addNewUser(){
     const payload = {
-      token:localStorage.getItem('access_token'),
+      "token":localStorage.getItem('access_token'),
       "name":this.userFormGroup.get("name")?.value,
       "email":this.userFormGroup.get("email")?.value,
       "mobile":this.userFormGroup.get("mobile")?.value,
+      "user_id":this.data.id,
+      "state":this.data.state
     }
     this.isLoading=true
     if(this.userFormGroup.valid){
-      this.authService.createUser(payload).subscribe(res=>{
-        if(res.result.code==200){
-          this.isLoading=false 
-          this.onCloseDialog({reload:true})   
-        }else{
-          this.toastr.showError(res.result.Message,"SOMETHING WENT WRONG")
+      if(this.isEditing){
+        this.authService.updateMe(payload).subscribe(res=>{
+          if(res.result.code==200){
+            this.isLoading=false 
+            this.onCloseDialog({reload:true})   
+          }else{
+            this.toastr.showError(res.result.Message,"SOMETHING WENT WRONG")
+          }
+        })
+      }else{
+        const payload = {
+          "token":localStorage.getItem('access_token'),
+          "name":this.userFormGroup.get("name")?.value,
+          "email":this.userFormGroup.get("email")?.value,
+          "mobile":this.userFormGroup.get("mobile")?.value,
         }
-      }) 
+        this.authService.createUser(payload).subscribe(res=>{
+          if(res.result.code==200){
+            this.isLoading=false 
+            this.onCloseDialog({reload:true})   
+          }else{
+            this.toastr.showError(res.result.Message,"SOMETHING WENT WRONG")
+          }
+        }) 
+      }
     }else{
       this.toastr.showWarning("FILL ALL INFORMATION","INFORMATION VALIDATION")
     }

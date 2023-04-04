@@ -39,7 +39,7 @@
           [defaultPageSize]="50"
           [pageRouterLink]="'member-details'"
           (rowAction)="goToDetails($event)"
-          [tableActions]="['Edit']"
+          [tableActions]="['EDIT','VIEW']"
           (sort)="sortData($event)"
           (tableRowActions)="doTableActions($event)"
           [hideEmptyMessage]="isLoadingTableData"

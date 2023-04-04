@@ -38,7 +38,7 @@ export class TableGeneralComponent implements OnInit, AfterViewInit, OnChanges {
   matPaginator!: MatPaginator;
   @ViewChild(MatSort, {static: true}) matSort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
-
+// 192.168.3.31
   @Input() tableTitle!: string;
   @Input() tableFilters!: ITableSearchFiltersInterface[];
   @Input() hasStatusFilter = true;
@@ -87,7 +87,7 @@ export class TableGeneralComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() openSearch: EventEmitter<any> = new EventEmitter<any>();
 
   redItems = ['INACTIVE', 'REJECTED', 'EXPIRED', 'ERROR', 'DEACTIVATED', 'FALSE'];
-  greenItems = ['ACTIVE', 'APPROVED', 'PROCESSED', 'TRUE'];
+  greenItems = ['active', 'APPROVED', 'PROCESSED', 'TRUE'];
   orangeItems = ['PENDING', 'UNAVAILABLE'];
   removeActionButtonOn: any[] = ['CLOSED', 'RECONCILED', 'PAID', 'REJECTED', 'APPROVED'];
 

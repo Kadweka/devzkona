@@ -60,8 +60,11 @@ export class DepartmentsComponent implements OnInit {
       this.pageSize = data?.pageSize;
     }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      const dialogRef = this.dialog.open(AddDepartmentComponent, {
+        panelClass: 'dialogClass',
+        data: action.element,
+      });
     }
   }
   goToDetails(event: any): any {

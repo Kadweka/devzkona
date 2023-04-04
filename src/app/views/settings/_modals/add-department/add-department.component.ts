@@ -13,6 +13,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 export class AddDepartmentComponent implements OnInit {
 
   isLoading = false;
+  isEditing=false;
   loadindData=false
   departmentrFormGroup!: UntypedFormGroup;
   employees:any [] = []
@@ -31,6 +32,13 @@ export class AddDepartmentComponent implements OnInit {
       name: ['', Validators.required],
     });
     this.getEmployees()
+    if(this.data.id){
+      this.isEditing=true
+      this.departmentrFormGroup.patchValue({
+        manager_id:this.data.manager_id,
+        name:this.data.name
+      })
+    }
   }
   onCloseDialog(dialogData?: any): any {
     const {reload = false, data = null} = dialogData || {};
@@ -51,22 +59,40 @@ export class AddDepartmentComponent implements OnInit {
     })
   }
   addNewDepartment(){
-    const payload = {
-      token:localStorage.getItem('access_token'),
-      "name":this.departmentrFormGroup.get("name")?.value,
-      "manager_id":this.departmentrFormGroup.get("manager_id")?.value,
-    }
     this.isLoading=true
     if(this.departmentrFormGroup.valid){
-      this.employeeService.createDepartment(payload).subscribe(res=>{
-      if(res.result.code==200){
-        this.isLoading=false 
-        this.toastr.showSuccess(res.result.message,"SOMETHING WENTNWRONG")
-        this.onCloseDialog({reload:true})
+      if(this.isEditing){
+        const payload = {
+          "token":localStorage.getItem('access_token'),
+          "name":this.departmentrFormGroup.get("name")?.value,
+          "manager_id":this.departmentrFormGroup.get("manager_id")?.value,
+          "department_id":this.data.id
+        }
+        this.employeeService.updateDepartments(payload).subscribe(res=>{
+          if(res.result.code==200){
+            this.isLoading=false 
+            this.toastr.showSuccess(res.result.message,"SOMETHING WENTNWRONG")
+            this.onCloseDialog({reload:true})
+          }else{
+            this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
+          }
+          }) 
       }else{
-        this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
+        const payload = {
+          "token":localStorage.getItem('access_token'),
+          "name":this.departmentrFormGroup.get("name")?.value,
+          "manager_id":this.departmentrFormGroup.get("manager_id")?.value,
+        }
+        this.employeeService.createDepartment(payload).subscribe(res=>{
+          if(res.result.code==200){
+            this.isLoading=false 
+            this.toastr.showSuccess(res.result.message,"SOMETHING WENTNWRONG")
+            this.onCloseDialog({reload:true})
+          }else{
+            this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
+          }
+          }) 
       }
-      }) 
     }else{
       this.toastr.showWarning("Please fill in all information","VALIDATION ERROR!")
     }

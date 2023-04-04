@@ -35,6 +35,13 @@ export class JournalsComponent implements OnInit {
   initializeColumns(): void {
     this.generalTableColumns = [
       {
+        name: 'SHORT CODE',
+        dataKey: 'code',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'MOBILE'
+      },
+      {
         name: 'JOURNAL NAME',
         dataKey: 'name',
         position: 'left',
@@ -47,13 +54,6 @@ export class JournalsComponent implements OnInit {
         position: 'left',
         isSortable: true,
         searchKey: 'EMAIL',
-      },
-      {
-        name: 'SHORT CODE',
-        dataKey: 'code',
-        position: 'center',
-        isSortable: true,
-        searchKey: 'MOBILE'
       },
       // {
       //   name: 'CURRENCY',

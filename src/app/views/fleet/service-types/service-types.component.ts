@@ -54,7 +54,7 @@ export class ServiceTypesComponent {
       {
         name: 'ACTIONS',
         dataKey: 'actions',
-        position: 'left',
+        position: 'right',
         isSortable: false,
       }
     ];

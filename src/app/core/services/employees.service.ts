@@ -52,5 +52,9 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/structure_details', query);
   }
+  updateDepartments(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/update_department', payload);
+  }
 }
 // employee_details

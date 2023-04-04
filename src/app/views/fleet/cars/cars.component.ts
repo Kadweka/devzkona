@@ -70,17 +70,10 @@ export class CarsComponent implements OnInit {
         isSortable: true,
         searchKey: 'DRIVER'
       },
-      // {
-      //   name: 'DRIVER',
-      //   dataKey: 'driver',
-      //   position: 'left',
-      //   isSortable: true,
-      //   searchKey: 'DRIVER',
-      // },
       {
         name: 'ACTIONS',
         dataKey: 'actions',
-        position: 'left',
+        position: 'right',
         isSortable: false,
       }
     ];

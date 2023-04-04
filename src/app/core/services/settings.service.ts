@@ -33,4 +33,12 @@ export class SettingsService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/new_product', payload);
   }
+  updateProduct(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/update_product', payload);
+  }
+  updateProductCategories(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/update_categories', payload);
+  }
 }
