@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // base_url : 'http://192.168.100.40'
-  base_url : 'http://localhost:8149'
+  base_url : 'http://164.90.220.18:8116'
 };
 
 /*
