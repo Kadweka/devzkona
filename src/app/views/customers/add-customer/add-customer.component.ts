@@ -40,8 +40,12 @@ types=[
   ) { }
 
   ngOnInit(): void {
+    console.log(this.isEditing,"CHECKING AT THE EDITING STATUS!!!!!!!!!!!!!!!!!!!!!!!11");
+    
     this.activatedRoute.params.subscribe(params => {
-      if (params != null) {
+      console.log(params,"LETS CHECK AT THE PARAMS!!!!!!1");
+      
+      if (params.id) {
         this.isEditing=true
         this.customerCode = params.id;
       }else{
@@ -88,7 +92,7 @@ getReceivable(){
     token:localStorage.getItem("access_token"),
     name:"",
     limit:100000,
-    type:"receivable",
+    type:"asset_receivable",
     offset:0
   }
   this.loadingReceivable=true
@@ -108,7 +112,7 @@ getPayableCountries(){
   const payload = {
     token:localStorage.getItem("access_token"),
     name:"",
-    type:"payable",
+    type:"liability_payable",
     limit:100000,
     offset:0
   }

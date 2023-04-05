@@ -13,7 +13,26 @@ import { AccountingService } from 'src/app/core/services/accounting.service';
 export class AddChartsOfAccountComponent implements OnInit {
   isLoading = false;
   loadingTypes=false
-  typesData!:any[]
+  typesData=[
+    {code:"asset_receivable",name:"Receivable"},
+    {code:"asset_cash",name:"Bank and Cash"},
+    {code:"asset_current",name:"Current Assets"},
+    {code:"asset_non_current",name:"Non-current Assets"},
+    {code:"asset_prepayments",name:"Prepayments"},
+    {code:"asset_fixed",name:"Fixed Assets"},
+    {code:"liability_payable",name:"Payable"},
+    {code:"liability_credit_card",name:"Credit Card"},
+    {code:"liability_current",name:"Current Liabilities"},
+    {code:"liability_non_current",name:"Non-current Liabilities"},
+    {code:"equity",name:"Equity"},
+    {code:"equity_unaffected",name:"Current Year Earnings"},
+    {code:"income",name:"Income"},
+    {code:"income_other",name:"Other Income"},
+    {code:"expense",name:"Expenses"},
+    {code:"expense_depreciation",name:"Depreciation"},
+    {code:"expense_direct_cost",name:"Cost of Revenue"},
+    {code:"off_balance",name:"Off Balance"},
+  ]
   chartOfAccountFormGroup!: UntypedFormGroup;
   constructor(
     private router: Router,
@@ -31,27 +50,10 @@ export class AddChartsOfAccountComponent implements OnInit {
       code: ['', Validators.required],
       reconcile: [''],
     });
-    this.getAccountTypes()
   }
   onCloseDialog(dialogData?: any): any {
     const {reload = false, data = null} = dialogData || {};
     this.dialogRef.close({reload, data});
-  }
-    getAccountTypes(){
-    const payload={
-      token:localStorage.getItem("access_token"),
-      name:"",
-      limit:1000,
-      offset:0
-    }
-    this.loadingTypes=true
-        // @ts-ignore
-    this.accountService.getAccountTypes(payload).subscribe(res=>{      
-      if(res.result.code ==200){
-        this.typesData=res.result.account_types
-        this.loadingTypes=false
-      }
-    })
   }
   addAccount(){
     const payload = {

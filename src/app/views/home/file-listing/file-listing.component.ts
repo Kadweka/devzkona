@@ -3,6 +3,7 @@ import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ITableColumnInterface, ITableRowActions } from 'src/app/shared/interfaces/table-interface';
 import {FilesService} from '../../../core/services/files.service';
+import jsPDF from 'jspdf';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -82,8 +83,10 @@ export class FileListingComponent implements OnInit {
     this.pageSize = data?.pageSize;
   }
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'DN') {
+      let pdf=new jsPDF('p','pt','a4');
+      pdf.save()
+      // pdf.html(this.)
     }
   }
   goToDetails(event: any): any {
