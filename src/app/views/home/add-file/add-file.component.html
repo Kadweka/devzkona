@@ -122,7 +122,7 @@
           </mat-form-field>
         </div>
         <div class="buttons-cont">
-          <button mat-button class="custom-filled-button" type="submit">
+          <button mat-button class="custom-filled-button" (click)="addFile()">
             <mat-spinner
               matSuffix
               *ngIf="isLoading"

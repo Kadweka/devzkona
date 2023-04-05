@@ -84,14 +84,15 @@ export class AddFileComponent implements OnInit {
       }
       else{
         const payload = {
-          name: this.fileForm.get("name")?.value,
-          company_type: this.fileForm.get("company_type")?.value,
+          customer_id: this.fileForm.get("customer_id")?.value,
+          bill_ref: this.fileForm.get("bill_ref")?.value,
           country_id: this.fileForm.get("country_id")?.value,
-          city: this.fileForm.get("city")?.value,
-          phone: this.fileForm.get("phone")?.value,
-          email: this.fileForm.get("email")?.value,
-          property_account_receivable_id: this.fileForm.get("property_account_receivable_id")?.value,
-          property_account_payable_id: this.fileForm.get("property_account_payable_id")?.value,
+          dep_date: this.fileForm.get("dep_date")?.value,
+          inv_ref: this.fileForm.get("inv_ref")?.value,
+          arr_date: this.fileForm.get("arr_date")?.value,
+          journal_id: this.fileForm.get("journal_id")?.value,
+          date: this.fileForm.get("date")?.value,
+          return_date: this.fileForm.get("return_date")?.value,
           token:localStorage.getItem("access_token")
         }
         this.fileService.createFile(payload).subscribe(res=>{
