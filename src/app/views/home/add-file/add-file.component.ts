@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { FilesService } from 'src/app/core/services/files.service';
 import { SettingsService } from 'src/app/core/services/settings.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-file',
@@ -24,11 +23,8 @@ export class AddFileComponent implements OnInit {
     private router: Router,
     private formBuilder: UntypedFormBuilder,
     private toastr: ToasterService,
-    public dialogRef: MatDialogRef<AddFileComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any,
     private settingService:SettingsService,
     private fileService:FilesService,
-    // public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
 
   ) { }
@@ -80,7 +76,7 @@ export class AddFileComponent implements OnInit {
           if(res.result.code==200){
             this.isLoading=false
             this.toastr.showSuccess(res.result.message,"SUCCESS")
-            this.router.navigate([`/customers`])
+            this.router.navigate([`/files`])
           }else{
             this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
           }

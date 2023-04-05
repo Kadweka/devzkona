@@ -98,28 +98,14 @@
             ></mat-datepicker-toggle>
           </mat-form-field>
 
-          <mat-form-field class="width-49" appearance="outline">
-            <mat-label>
-              <mat-icon class="form-label">person</mat-icon
-              >&nbsp;&nbsp;Destination Country
-            </mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Destination Country"
-              formControlName="country_id"
-              required
-            />
-          </mat-form-field>
-
-          <!-- <mat-form-field appearance="outline" class="width-49">
+          <mat-form-field appearance="outline" class="width-49">
             <mat-label>Destination Country</mat-label>
             <mat-select name="Destination Country" formControlName="country_id">
               <mat-option *ngFor="let item of country" [value]="item.id">
                 {{ item.name }}
               </mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
             <mat-datepicker #picker5 color="primary"></mat-datepicker>
