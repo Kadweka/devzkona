@@ -18,5 +18,7 @@ export class FilesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/files', query);
   }
-
+  createFile(payload:any):Observable<any>{
+    return this.http.post(this.baseUrl + '/new_file', payload)
+  }
 }
