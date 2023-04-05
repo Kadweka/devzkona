@@ -80,7 +80,7 @@ export class AddFileComponent implements OnInit {
           if(res.result.code==200){
             this.isLoading=false
             this.toastr.showSuccess(res.result.message,"SUCCESS")
-            this.router.navigate([`/customers`])
+            this.router.navigate([`/files`])
           }else{
             this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
           }
