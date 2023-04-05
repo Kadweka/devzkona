@@ -10,6 +10,8 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   isLoadingUser = false;
+  user_id=""
+  user_state=""
   userFormGroup!: UntypedFormGroup;
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -35,6 +37,8 @@ getMe(){
     this.isLoadingUser = true;
     this.authService.getMe(payload).subscribe(res => {
       if(res.result.code == 200){
+        this.user_id=res.result.me[0].id
+        this.user_state=res.result.me[0].state
       this.userFormGroup.patchValue(res.result.me[0]);
       this.isLoadingUser=false
       }else{}
@@ -47,6 +51,8 @@ updateMe(){
     email: this.userFormGroup.get('login')?.value,
     name: this.userFormGroup.get('name')?.value,
     mobile: this.userFormGroup.get('mobile')?.value,
+    user_id:this.user_id,
+    state:this.user_state
   }
   this.isLoadingUser=true
   this.authService.updateMe(payload).subscribe(res=>{

@@ -122,6 +122,11 @@ export class UsersComponent implements OnInit {
         panelClass: 'dialogClass',
         data: action.element,
       });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getUsers();
+        }
+      });
     }
   }
   goToDetails(event: any): any {

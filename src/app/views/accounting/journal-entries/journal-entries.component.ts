@@ -45,23 +45,23 @@ export class JournalEntriesComponent implements OnInit {
       {
         name: 'NUMBER',
         dataKey: 'name',
-        position: 'center',
+        position: 'left',
         isSortable: true,
         searchKey: 'NUMBER'
       },
       {
-        name: 'PARTNER',
+        name: 'TYPE',
+        dataKey: 'type',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'TYPE'
+      },
+      {
+        name: 'CUSTOMER',
         dataKey: 'partner',
         position: 'left',
         isSortable: true,
         searchKey: 'PARTNER',
-      },
-      {
-        name: 'JOURNAL',
-        dataKey: 'journal',
-        position: 'center',
-        isSortable: true,
-        searchKey: 'JOURNAL'
       },
       {
         name: 'TOTAL',
@@ -71,6 +71,29 @@ export class JournalEntriesComponent implements OnInit {
         units: 'currency',
         searchKey: 'TOTAL'
       },
+      {
+        name: 'PAID',
+        dataKey: 'paid',
+        position: 'left',
+        isSortable: true,
+        units: 'currency',
+        searchKey: 'PAID'
+      },
+      {
+        name: 'BALANCE',
+        dataKey: 'balance',
+        position: 'left',
+        isSortable: true,
+        units: 'currency',
+        searchKey: 'balance'
+      },
+      // {
+      //   name: 'PAYMENT STATUS',
+      //   dataKey: 'pay_state',
+      //   position: 'left',
+      //   isSortable: true,
+      //   searchKey: 'STATUS'
+      // },
       {
         name: 'STATUS',
         dataKey: 'state',
@@ -109,6 +132,7 @@ getEntries(){
   const payload = {
     limit: 10,
     offset: 0,
+    move_type:["out_invoice","in_invoice"],
     name:"",
     token: localStorage.getItem('access_token')
   };

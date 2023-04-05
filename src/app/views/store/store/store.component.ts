@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  selector: 'app-store',
+  templateUrl: './store.component.html',
+  styleUrls: ['./store.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class StoreComponent {
   activeLinkIndex = -1;
   navLinks = [
     {
-      label:"My Profile",
-      link: './profle',
+      label:"Products",
+      link: './products',
       index: 0
     },
     {
-      label:"Users",
-      link: './system-users',
+      label:"Categories",
+      link: './categories',
       index: 1
     },
-    {
-      label:"Departments",
-      link: './departments',
-      index: 2
-    }
+    // {
+    //   label:"Departments",
+    //   link: './categories',
+    //   index: 2
+    // }
   ];
 
   constructor(private router: Router) {

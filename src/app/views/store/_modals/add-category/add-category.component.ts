@@ -28,11 +28,13 @@ export class AddCategoryComponent implements OnInit {
     this.categFormGroup = this.formBuilder.group({
       name: ['', Validators.required]
     });
-    if(this.data){
+    if(this.data.id){
       this.isEditing=true
       this.categFormGroup.patchValue({
         name:this.data.name
       })
+    }else{
+      this.isEditing=false
     }
   }
   onCloseDialog(dialogData?: any): any {

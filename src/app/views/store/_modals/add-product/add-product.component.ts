@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
       categ_id: ['', Validators.required],
     });
     this.getCategories()
-    if(this.data){
+    if(this.data.id){
       this.isEditing=true
       this.productFormGroup.patchValue({
         detailed_type: this.data.detailed_type,
@@ -48,6 +48,8 @@ export class AddProductComponent implements OnInit {
         list_price:this.data.list_price,
         categ_id:this.data.categ,
       })
+    }else{
+      this.isEditing=false
     }
   }
   onCloseDialog(dialogData?: any): any {
