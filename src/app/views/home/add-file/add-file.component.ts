@@ -25,10 +25,10 @@ export class AddFileComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private toastr: ToasterService,
     public dialogRef: MatDialogRef<AddFileComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
     private settingService:SettingsService,
     private fileService:FilesService,
-    public dialog: MatDialog,
+    // public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
 
   ) { }
