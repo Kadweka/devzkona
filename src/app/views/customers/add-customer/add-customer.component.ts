@@ -25,10 +25,10 @@ export class AddCustomerComponent implements OnInit {
   receivable:any[]=[]
   payable:any[]=[]
   countries:any[]=[]
-types=[
-  {code:"person",name:"Individual"},
-  {code:"company",name:"Company"},
-]
+  types=[
+    {code:"person",name:"Individual"},
+    {code:"company",name:"Company"},
+  ]
   constructor(
     private router: Router,
     private formBuilder: UntypedFormBuilder,
@@ -47,7 +47,7 @@ types=[
       }else{
         this.isEditing=false
       }
-    });    
+    });
     this.customerFormGroup = this.formBuilder.group({
       company_type: ['', Validators.required],
       country_id: ['', Validators.required],
@@ -114,7 +114,7 @@ getPayableCountries(){
   }
   this.loadingPayable=true
           // @ts-ignore
-  this.accountService.getAccounts(payload).subscribe(res=>{   
+  this.accountService.getAccounts(payload).subscribe(res=>{
     if(res.result.code==200){
       this.payable=res.result.account
       this.loadingPayable=false
@@ -177,6 +177,7 @@ addCustomer(){
       this.toastr.showWarning("Fill all information","VALIDATION ERROR")
     }
   }
+
 getCustomerDetails(){
   const payload={
     token:localStorage.getItem("access_token"),
@@ -197,14 +198,14 @@ getCustomerDetails(){
           property_account_payable_id: res.result.information.payable_id,
         })
       }else{
-       
+
         this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG")
         this.isLoading=false
       }
     })
     this.isLoading=false
   }else{
-  
+
   }
 }
 }
