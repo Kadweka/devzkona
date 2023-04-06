@@ -5,22 +5,22 @@ import { Router } from '@angular/router';
 import { SettingsService } from 'src/app/core/services/settings.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { ITableColumnInterface, ITableRowActions } from 'src/app/shared/interfaces/table-interface';
-import { AddCategoryComponent } from '../_modals/add-category/add-category.component';
-import { AddUsersComponent } from '../_modals/add-users/add-users.component';
+import { AddProductComponent } from '../_modals/add-product/add-product.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class ProductsComponent implements OnInit {
+
   generalTableColumns: ITableColumnInterface[] = [];
-  isLoadingTableData = false;
+  isLoadingTableData=false
   page = 1;
   pageSize = 50;
   totalLength!: number;
-  totalElements!: number;
-  generalTableDataArray: any [] = [];
+  totalElements!:number
+  generalTableDataArray: any [] = []
   constructor(
     private router: Router,
     public dialog: MatDialog,
@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeColumns();
-    this.getCategories()
+    this.getProducts()
   }
   initializeColumns(): void {
     this.generalTableColumns = [
@@ -43,12 +43,48 @@ export class CategoryComponent implements OnInit {
         searchKey: 'NAME',
       },
       {
+        name: 'TYPE',
+        dataKey: 'detailed_type',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'TYPE',
+      },
+      {
+        name: 'CATEGORY',
+        dataKey: 'categ_id',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'CATEGORY'
+      },
+      {
+        name: 'COST PRICE',
+        dataKey: 'cost',
+        position: 'left',
+        units:'currency',
+        isSortable: true,
+        searchKey: 'AMOUNT'
+      },
+      {
+        name: 'QUANTITY AVAILABLE',
+        dataKey: 'qty',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'QUANTITY'
+      },
+      {
+        name: 'UOM',
+        dataKey: 'uom',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'UOM'
+      },
+      {
         name: 'ACTIONS',
         dataKey: 'actions',
         position: 'left',
         isSortable: false,
       }
-    ];
+    ]
     }
     onPageChange(data: any): any {
       this.page = data?.pageIndex + 1;
@@ -56,13 +92,13 @@ export class CategoryComponent implements OnInit {
     }
   doTableActions(action: ITableRowActions): void {
     if (action.action === 'EDIT') {
-      const dialogRef = this.dialog.open(AddCategoryComponent, {
+      const dialogRef = this.dialog.open(AddProductComponent, {
         panelClass: 'dialogClass',
         data: action.element,
       });
       dialogRef.afterClosed().subscribe(({reload, data}) => {
         if (reload) {
-          this.getCategories();
+          this.getProducts();
         }
       });
     }
@@ -78,17 +114,17 @@ export class CategoryComponent implements OnInit {
     // );
   }
   addItem(event: any): any{
-    const dialogRef = this.dialog.open(AddCategoryComponent, {
+    const dialogRef = this.dialog.open(AddProductComponent, {
       panelClass: 'dialogClass',
       data: event,
     });
     dialogRef.afterClosed().subscribe(({reload, data}) => {
       if (reload) {
-        this.getCategories();
+        this.getProducts();
       }
     });
   }
-  getCategories(){
+  getProducts(){
     const payload = {
       name:"",
       limit:10,
@@ -97,9 +133,9 @@ export class CategoryComponent implements OnInit {
     }
     this.isLoadingTableData=true
         // @ts-ignore
-    this.categoryService.getCategories(payload).subscribe(res=>{
+    this.categoryService.getProducts(payload).subscribe(res=>{
       if(res.result.code==200){
-        this.generalTableDataArray = res.result.category;
+        this.generalTableDataArray = res.result.products;
         this.totalElements=res.result.total_items
         this.totalLength=res.result.total_items
         this.isLoadingTableData = false;
@@ -110,6 +146,7 @@ export class CategoryComponent implements OnInit {
     })
   }
   reload(){
-    this.getCategories()
+    this.getProducts()
   }
 }
+

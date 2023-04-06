@@ -63,6 +63,14 @@ const moduleRoutes: Routes = [
           ),
       },
       {
+        path: 'store',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('../../views/store/store.module').then(
+            (m) => m.StoreModule
+          ),
+      },
+      {
         path: 'settings',
         // canActivate: [AuthGuard],
         loadChildren: () =>

@@ -30,13 +30,8 @@ export class AccountingComponent implements OnInit {
       index: 2
     },
     {
-      label:"Invoices",
+      label:"Invoices/Bills",
       link: './invoices',
-      index: 3
-    },
-    {
-      label:"Bills",
-      link: './bills',
       index: 3
     },
     {

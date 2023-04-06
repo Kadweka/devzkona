@@ -70,12 +70,6 @@ export class PayrollComponent {
         position: 'left',
         isSortable: true,
         searchKey: 'STATUS',
-      },
-      {
-        name: 'ACTIONS',
-        dataKey: 'actions',
-        position: 'left',
-        isSortable: false,
       }
     ];
   }

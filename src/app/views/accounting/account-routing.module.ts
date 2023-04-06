@@ -39,10 +39,6 @@ const routes: Routes = [
           path: 'trial-balance',
           component: TrialBalanceComponent,
         },
-        {
-          path: 'bills',
-          component: JournalItemsComponent,
-        },
       ]
     }
     

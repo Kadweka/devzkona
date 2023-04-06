@@ -65,6 +65,11 @@ export class DepartmentsComponent implements OnInit {
         panelClass: 'dialogClass',
         data: action.element,
       });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getDepartments();
+        }
+      });
     }
   }
   goToDetails(event: any): any {

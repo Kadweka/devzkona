@@ -55,7 +55,7 @@ export class CustomerListingComponent implements OnInit {
       {
         name: 'PHONE',
         dataKey: 'phone',
-        position: 'center',
+        position: 'left',
         isSortable: true,
         searchKey: 'PHONE'
       },
