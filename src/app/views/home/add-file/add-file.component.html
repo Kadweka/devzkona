@@ -6,7 +6,7 @@
     <section>
       <form [formGroup]="fileForm">
         <div>
-          <mat-form-field appearance="outline" class="width-49">
+          <mat-form-field appearance="outline" class="width-75">
             <mat-label>
               <mat-icon class="form-label">person</mat-icon
               >&nbsp;&nbsp;Client</mat-label
@@ -37,7 +37,7 @@
             <mat-label>Container Departure Date</mat-label>
             <input
               matInput
-              formControlName="dept_date"
+              formControlName="dep_date"
               [matDatepicker]="picker2"
             />
             <mat-datepicker-toggle
@@ -60,18 +60,18 @@
             ></mat-datepicker-toggle>
           </mat-form-field>
 
-          <mat-form-field class="width-49" appearance="outline">
-            <mat-label>
-              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Invoice
-              Ref
-            </mat-label>
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-datepicker #picker3 color="primary"></mat-datepicker>
+            <mat-label>Expect Payment Date</mat-label>
             <input
-              type="text"
               matInput
-              placeholder="Invoice Ref"
-              formControlName="inv_ref"
-              required
+              formControlName="payment_date"
+              [matDatepicker]="picker2"
             />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
@@ -118,6 +118,7 @@
               [for]="picker5"
             ></mat-datepicker-toggle>
           </mat-form-field>
+          
         </div>
         <div class="buttons-cont">
           <button mat-button class="custom-filled-button" (click)="addFile()">
@@ -134,6 +135,6 @@
           </button>
         </div>
       </form>
-    </section>
+   </section>
   </div>
 </div>
