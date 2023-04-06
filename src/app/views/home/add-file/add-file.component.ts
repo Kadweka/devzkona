@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { FilesService } from 'src/app/core/services/files.service';
 import { SettingsService } from 'src/app/core/services/settings.service';
+import { CustomersService } from 'src/app/core/services/customers.service';
+import { AccountingService } from 'src/app/core/services/accounting.service';
 
 @Component({
   selector: 'app-add-file',
@@ -15,16 +17,22 @@ export class AddFileComponent implements OnInit {
   isLoading = false;
   isEditing=false
   fileCode=""
-  files!:any[]
+  files:any[]=[]
   loadingCountry=false
   country:any[]=[]
+  loadingCustomers=false
+  customer:any[]=[]
+  loadingJournals=false
+  journal:any[]=[]
 
   constructor(
     private router: Router,
     private formBuilder: UntypedFormBuilder,
     private toastr: ToasterService,
     private settingService:SettingsService,
+    private accountingService:AccountingService,
     private fileService:FilesService,
+    private customerService:CustomersService,
     private activatedRoute: ActivatedRoute,
 
   ) { }
@@ -51,8 +59,49 @@ export class AddFileComponent implements OnInit {
       return_date: ['', Validators.required],
 
     });
-
+    this.getCustomers()
+    this.getJournals()
     this.getCountries()
+  }
+
+  getJournals(){
+    const payload = {
+      limit: 1000,
+      offset: 0,
+      name:"",
+      token: localStorage.getItem('access_token')
+    };
+    this.loadingJournals = true;
+    // @ts-ignore
+    this.accountingService.getJournals(payload).subscribe(res => {
+     if(res.result.code==200){
+        this.journal = res.result.journals;
+        this.loadingJournals = false;
+      }else{
+        this.toastr.showWarning(res.result.Message,"SOMETHING IS WRONG")
+        this.loadingJournals = false;
+      }
+    });
+  }
+
+  getCustomers(){
+    const payload = {
+      limit: 1000,
+      offset: 0,
+      name:"",
+      token: localStorage.getItem('access_token')
+    };
+    this.loadingCustomers = true;
+    // @ts-ignore
+    this.customerService.getCustomers(payload).subscribe(res => {
+     if(res.result.code==200){
+        this.customer = res.result.customers;
+        this.loadingCustomers = false;
+      }else{
+        this.toastr.showWarning(res.result.Message,"SOMETHING IS WRONG")
+        this.loadingCustomers = false;
+      }
+    });
   }
 
   addFile(){
@@ -99,7 +148,7 @@ export class AddFileComponent implements OnInit {
           if(res.result.code==200){
             this.isLoading=false
             this.toastr.showSuccess(res.result.message,"SUCCESS")
-            this.router.navigate([`/customers`])
+            this.router.navigate([`/files`])
           }else{
             this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
           }
