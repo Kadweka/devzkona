@@ -57,6 +57,7 @@ export class AddFileComponent implements OnInit {
       journal_id: ['', Validators.required],
       date: ['', Validators.required],
       return_date: ['', Validators.required],
+      invoice_payment_term_id: ['', Validators.required],
 
     });
     this.getCustomers()
@@ -105,9 +106,6 @@ export class AddFileComponent implements OnInit {
   }
 
   addFile(){
-    this.isLoading=true
-    if(this.fileForm.valid){
-      if(this.isEditing){
         const payload = {
           customer_id: this.fileForm.get("customer_id")?.value,
           bill_ref: this.fileForm.get("bill_ref")?.value,
@@ -117,46 +115,49 @@ export class AddFileComponent implements OnInit {
           arr_date: this.fileForm.get("arr_date")?.value,
           journal_id: this.fileForm.get("journal_id")?.value,
           date: this.fileForm.get("date")?.value,
+          invoice_payment_term_id: this.fileForm.get("invoice_payment_term_id")?.value,
           return_date: this.fileForm.get("return_date")?.value,
           token:localStorage.getItem("access_token"),
           partner_id:this.fileCode
         }
-        this.fileService.updateFile(payload).subscribe(res=>{
-          if(res.result.code==200){
-            this.isLoading=false
-            this.toastr.showSuccess(res.result.message,"SUCCESS")
-            this.router.navigate([`/files`])
-          }else{
-            this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
+        if(this.fileForm.valid){
+          this.isLoading=true
+          this.fileService.createFile(payload).subscribe(res=>{
+            if(res.result.code==200){
+              this.toastr.showSuccess(res.result.message,"SUCCESS")
+              this.isLoading=false
+              this.router.navigate([`/file`])
+            }else{
+              this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
           }
         })
-      }
-      else{
-        const payload = {
-          customer_id: this.fileForm.get("customer_id")?.value,
-          bill_ref: this.fileForm.get("bill_ref")?.value,
-          country_id: this.fileForm.get("country_id")?.value,
-          dep_date: this.fileForm.get("dep_date")?.value,
-          inv_ref: this.fileForm.get("inv_ref")?.value,
-          arr_date: this.fileForm.get("arr_date")?.value,
-          journal_id: this.fileForm.get("journal_id")?.value,
-          date: this.fileForm.get("date")?.value,
-          return_date: this.fileForm.get("return_date")?.value,
-          token:localStorage.getItem("access_token")
-        }
-        this.fileService.createFile(payload).subscribe(res=>{
-          if(res.result.code==200){
-            this.isLoading=false
-            this.toastr.showSuccess(res.result.message,"SUCCESS")
-            this.router.navigate([`/files`])
+
+      // else{
+      //   const payload = {
+      //     customer_id: this.fileForm.get("customer_id")?.value,
+      //     bill_ref: this.fileForm.get("bill_ref")?.value,
+      //     country_id: this.fileForm.get("country_id")?.value,
+      //     dep_date: this.fileForm.get("dep_date")?.value,
+      //     inv_ref: this.fileForm.get("inv_ref")?.value,
+      //     arr_date: this.fileForm.get("arr_date")?.value,
+      //     journal_id: this.fileForm.get("journal_id")?.value,
+      //     date: this.fileForm.get("date")?.value,
+      //     return_date: this.fileForm.get("return_date")?.value,
+      //     token:localStorage.getItem("access_token")
+      //   }
+      //   this.fileService.createFile(payload).subscribe(res=>{
+      //     if(res.result.code==200){
+      //       this.isLoading=false
+      //       this.toastr.showSuccess(res.result.message,"SUCCESS")
+      //       this.router.navigate([`/files`])
+      //     }else{
+      //       this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
+      //     }
+      //   })
+      // }
           }else{
-            this.toastr.showWarning(res.result.message,"VALIDATION ERROR")
+            this.toastr.showWarning("Fill all information","VALIDATION ERROR")
           }
-        })
-      }
-    }else{
-      this.toastr.showWarning("Fill all information","VALIDATION ERROR")
-    }
   }
 
   getCountries(){

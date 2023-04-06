@@ -37,14 +37,14 @@ export class FileListingComponent implements OnInit {
     this.generalTableColumns = [
       {
         name: 'NAME',
-        dataKey: 'name',
+        dataKey: 'customer_id',
         position: 'left',
         isSortable: true,
         searchKey: 'NAME',
       },
       {
         name: 'CLIENT',
-        dataKey: 'client',
+        dataKey: 'dep_date',
         position: 'left',
         isSortable: true,
         searchKey: 'CLIENT',
@@ -65,7 +65,7 @@ export class FileListingComponent implements OnInit {
       },
       {
         name: 'STATUS',
-        dataKey: 'state',
+        dataKey: 'date',
         position: 'left',
         isSortable: true,
         searchKey: 'STATUS'
@@ -103,7 +103,7 @@ getfiles(): void{
   const payload = {
     limit: 10,
     offset: 0,
-    token: localStorage.getItem('access_toekn')
+    token: localStorage.getItem('access_token')
   };
   this.isLoadingTableData = true;
   // @ts-ignore
