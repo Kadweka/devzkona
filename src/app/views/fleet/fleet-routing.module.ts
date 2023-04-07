@@ -9,7 +9,7 @@ import { CarServicesComponent } from './car-services/car-services.component';
 import { ServiceTypesComponent } from './service-types/service-types.component';
 
 const routes: Routes = [
-    {
+  {
     path: '',
     component: FleetComponent,
     children: [
@@ -18,37 +18,37 @@ const routes: Routes = [
         redirectTo: 'list',
         pathMatch: 'full',
       },
-       {
+      {
         path: 'list',
         component: CarsComponent,
-        },
-         {
+      },
+      {
         path: 'manufacturer',
         component: CarManufacturerComponent,
-        },
-         {
+      },
+      {
         path: 'models',
         component: CarModelComponent,
-        },
-         {
+      },
+      {
         path: 'services',
         component: CarServicesComponent,
-        },
-        {
+      },
+      {
         path: 'service-types',
         component: ServiceTypesComponent,
-        },
-        {
-          path: 'new_fleet',
-          component: AddFleetComponent,
-          },
-      ]
-    }
-  ]
+      },
+      {
+        path: 'new_fleet',
+        component: AddFleetComponent,
+      },
+    ]
+  }
+]
 
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
-  })
-  export class FleetRoutingModule { }
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class FleetRoutingModule { }
