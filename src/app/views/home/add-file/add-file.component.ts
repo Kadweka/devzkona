@@ -57,6 +57,7 @@ export class AddFileComponent implements OnInit {
       dep_date: ['', Validators.required],
       country_id: ['', Validators.required],
       arr_date: ['', Validators.required],
+      bill_ref: ['', Validators.required],
       journal_id: ['', Validators.required],
       date: ['', Validators.required],
       return_date: ['', Validators.required],
@@ -118,7 +119,7 @@ export class AddFileComponent implements OnInit {
       arr_date: this.fileForm.get("arr_date")?.value,
       journal_id: this.fileForm.get("journal_id")?.value,
       date: this.fileForm.get("date")?.value,
-      invoice_payment_term_id: this.fileForm.get("invoice_payment_term_id")?.value,
+      // invoice_payment_term_id: this.fileForm.get("invoice_payment_term_id")?.value,
       return_date: this.fileForm.get("return_date")?.value,
       token: localStorage.getItem("access_token"),
       partner_id: this.fileCode
@@ -129,7 +130,7 @@ export class AddFileComponent implements OnInit {
         if (res.result.code == 200) {
           this.toastr.showSuccess(res.result.message, "SUCCESS")
           this.isLoading = false
-          this.router.navigate([`/file`])
+          this.router.navigate([`/files`])
         } else {
           this.toastr.showWarning(res.result.message, "VALIDATION ERROR")
         }
