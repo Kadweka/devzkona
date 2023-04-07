@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 import { ITableColumnInterface, ITableRowActions } from 'src/app/shared/interfaces/table-interface';
-import {FilesService} from '../../../core/services/files.service';
+import { FilesService } from '../../../core/services/files.service';
 import jsPDF from 'jspdf';
 export interface PeriodicElement {
   name: string;
@@ -22,37 +23,45 @@ export class FileListingComponent implements OnInit {
   pageSize = 50;
   totalLength!: number;
   totalElements!: number;
-  generalTableDataArray: any [] = [];
+  generalTableDataArray: any[] = [];
   constructor(
     private router: Router,
-    private fileService: FilesService
+    private fileService: FilesService,
+    private toastr: ToasterService
 
   ) { }
 
   ngOnInit(): void {
     this.initializeColumns();
-    this.getfiles();
+    this.getFiles();
   }
   initializeColumns(): void {
     this.generalTableColumns = [
       {
-        name: 'NAME',
-        dataKey: 'customer_id',
-        position: 'left',
-        isSortable: true,
-        searchKey: 'NAME',
-      },
-      {
         name: 'CLIENT',
-        dataKey: 'dep_date',
+        dataKey: 'client',
         position: 'left',
         isSortable: true,
         searchKey: 'CLIENT',
       },
       {
-        name: 'BILL REF',
+        name: 'CONTAINER DEPARTURE',
+        dataKey: 'dep_date',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'CONTAINER DEPARTURE',
+      },
+      {
+        name: 'CONTAINER ARRIVAL',
+        dataKey: 'arr_date',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'CONTAINER ARRIVAL',
+      },
+      {
+        name: 'BILL OF LADING',
         dataKey: 'bill_ref',
-        position: 'center',
+        position: 'left',
         isSortable: true,
         searchKey: 'BILL REF'
       },
@@ -64,11 +73,11 @@ export class FileListingComponent implements OnInit {
         searchKey: 'COUNTRY'
       },
       {
-        name: 'STATUS',
+        name: 'FILE OPENING',
         dataKey: 'date',
         position: 'left',
         isSortable: true,
-        searchKey: 'STATUS'
+        searchKey: 'FILE OPENING'
       },
       {
         name: 'ACTIONS',
@@ -84,7 +93,7 @@ export class FileListingComponent implements OnInit {
   }
   doTableActions(action: ITableRowActions): void {
     if (action.action === 'DN') {
-      let pdf=new jsPDF('p','pt','a4');
+      let pdf = new jsPDF('p', 'pt', 'a4');
       pdf.save()
       // pdf.html(this.)
     }
@@ -99,17 +108,28 @@ export class FileListingComponent implements OnInit {
     //   this.generalTableDataArray
     // );
   }
-getfiles(): void{
-  const payload = {
-    limit: 10,
-    offset: 0,
-    token: localStorage.getItem('access_token')
-  };
-  this.isLoadingTableData = true;
-  // @ts-ignore
-  this.fileService.getFiles(payload).subscribe(res => {
-    this.generalTableDataArray = res.result.files;
-    this.isLoadingTableData = false;
-  });
-}
+  getFiles(): void {
+    const payload = {
+      limit: 10,
+      offset: 0,
+      name: '',
+      token: localStorage.getItem('access_token')
+    };
+    this.isLoadingTableData = true;
+    // @ts-ignore
+    this.fileService.getFiles(payload).subscribe(res => {
+      if (res.result.code == 200) {
+        this.generalTableDataArray = res.result.files;
+        this.totalElements = res.result.total_items
+        this.totalLength = res.result.total_items
+        this.isLoadingTableData = false;
+      } else {
+        this.toastr.showWarning(res.result.Message, "SOMETHING IS WRONG")
+        this.isLoadingTableData = false;
+      }
+    });
+  }
+  reload() {
+    this.getFiles()
+  }
 }
