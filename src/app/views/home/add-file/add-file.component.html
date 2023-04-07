@@ -6,11 +6,9 @@
     <section>
       <form [formGroup]="fileForm">
         <div>
-          <mat-form-field appearance="outline" class="width-49">
+          <mat-form-field appearance="outline" class="width-75">
             <mat-label>
-              <mat-icon class="form-label">person</mat-icon
-              >&nbsp;&nbsp;Client</mat-label
-            >
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Client</mat-label>
             <mat-select name="Client" formControlName="customer_id">
               <mat-option *ngFor="let item of customer" [value]="item.id">
                 {{ item.name }}
@@ -23,62 +21,33 @@
               <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Bill
               Lading Ref
             </mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Bill of Lading"
-              formControlName="bill_ref"
-              required
-            />
+            <input type="text" matInput placeholder="Bill of Lading" formControlName="bill_ref" required />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
             <mat-datepicker #picker2 color="primary"></mat-datepicker>
             <mat-label>Container Departure Date</mat-label>
-            <input
-              matInput
-              formControlName="dep_date"
-              [matDatepicker]="picker2"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker2"
-            ></mat-datepicker-toggle>
+            <input matInput formControlName="dep_date" [matDatepicker]="picker2" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
             <mat-datepicker #picker3 color="primary"></mat-datepicker>
             <mat-label>Container Arrival Date</mat-label>
-            <input
-              matInput
-              formControlName="arr_date"
-              [matDatepicker]="picker3"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker3"
-            ></mat-datepicker-toggle>
+            <input matInput formControlName="arr_date" [matDatepicker]="picker3" />
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           </mat-form-field>
 
-          <mat-form-field class="width-49" appearance="outline">
-            <mat-label>
-              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Invoice
-              Ref
-            </mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Invoice Ref"
-              formControlName="inv_ref"
-              required
-            />
+          <mat-form-field appearance="outline" class="width-49">
+            <mat-datepicker #picker3 color="primary"></mat-datepicker>
+            <mat-label>Expect Payment Date</mat-label>
+            <input matInput formControlName="payment_date" [matDatepicker]="picker2" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
             <mat-label>
-              <mat-icon class="form-label">person</mat-icon
-              >&nbsp;&nbsp;Journal</mat-label
-            >
+              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Journal</mat-label>
             <mat-select name="Journal" formControlName="journal_id">
               <mat-option *ngFor="let item of journal" [value]="item.id">
                 {{ item.name }}
@@ -90,10 +59,7 @@
             <mat-datepicker #picker4 color="primary"></mat-datepicker>
             <mat-label>File Opening Date</mat-label>
             <input matInput formControlName="date" [matDatepicker]="picker4" />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker4"
-            ></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="width-49">
@@ -108,40 +74,14 @@
           <mat-form-field appearance="outline" class="width-49">
             <mat-datepicker #picker5 color="primary"></mat-datepicker>
             <mat-label>Container Return Date</mat-label>
-            <input
-              matInput
-              formControlName="return_date"
-              [matDatepicker]="picker5"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker5"
-            ></mat-datepicker-toggle>
+            <input matInput formControlName="return_date" [matDatepicker]="picker5" />
+            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
           </mat-form-field>
 
-          <mat-form-field class="width-49" appearance="outline">
-            <mat-label>
-              <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Invoice
-              Payment Term
-            </mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Invoice Payment Term"
-              formControlName="invoice_payment_term_id"
-              required
-            />
-          </mat-form-field>
         </div>
         <div class="buttons-cont">
           <button mat-button class="custom-filled-button" (click)="addFile()">
-            <mat-spinner
-              matSuffix
-              *ngIf="isLoading"
-              diameter="30"
-              color="accent"
-              value="60"
-            >
+            <mat-spinner matSuffix *ngIf="isLoading" diameter="30" color="accent" value="60">
             </mat-spinner>
             <span>Open New File</span>
             <!--                <span *ngIf="employeeCode">Edit Employee</span>-->
