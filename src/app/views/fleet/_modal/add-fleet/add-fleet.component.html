@@ -1,7 +1,6 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">Fleet Management</div>
   <div class="page__content shadow p-3 position-relative">
-    <app-back-btn></app-back-btn>
     <section>
       <mat-horizontal-stepper linear="false" #stepper>
         <mat-step [stepControl]="fleetFormGroup1">
@@ -19,99 +18,50 @@
 
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;License Plate
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;License Plate
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="License Plate"
-                  formControlName="license_plate"
-                  required
-                />
+                <input type="text" matInput placeholder="License Plate" formControlName="license_plate" required />
               </mat-form-field>
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Odometer
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Odometer
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Odometer"
-                  formControlName="odometer"
-                  required
-                />
+                <input type="text" matInput placeholder="Odometer" formControlName="odometer" required />
               </mat-form-field>
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Vehicle Value
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Vehicle Value
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Vehicle Value"
-                  formControlName="net_car_value"
-                  required
-                />
+                <input type="text" matInput placeholder="Vehicle Value" formControlName="net_car_value" required />
               </mat-form-field>
-            
+
 
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Color
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Color
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Color"
-                  formControlName="color"
-                  required
-                />
+                <input type="text" matInput placeholder="Color" formControlName="color" required />
               </mat-form-field>
 
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Horse Power
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Horse Power
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Horse Power"
-                  formControlName="horsepower"
-                  required
-                />
+                <input type="text" matInput placeholder="Horse Power" formControlName="horsepower" required />
               </mat-form-field>
 
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Power
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Power
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Power"
-                  formControlName="power"
-                  required
-                />
+                <input type="text" matInput placeholder="Power" formControlName="power" required />
               </mat-form-field>
 
               <mat-form-field class="width-49" appearance="outline">
                 <mat-label>
-                  <mat-icon class="form-label">person</mat-icon
-                  >&nbsp;&nbsp;Seats Number
+                  <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Seats Number
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Seats Number"
-                  formControlName="seats"
-                  required
-                />
+                <input type="text" matInput placeholder="Seats Number" formControlName="seats" required />
               </mat-form-field>
 
               <mat-form-field class="width-49" appearance="outline">
@@ -119,19 +69,16 @@
                   <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Door
                   Number
                 </mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Door Number"
-                  formControlName="doors"
-                  required
-                />
+                <input type="text" matInput placeholder="Door Number" formControlName="doors" required />
               </mat-form-field>
             </div>
           </form>
-          <div>
+          <div class="main-buttons">
             <button mat-button class="custom-filled-button" matStepperNext>
               Next
+            </button>
+            <button mat-button class="custom-outline-button" type="submit" (click)="onCloseDialog()">
+              <span>Cancel</span>
             </button>
           </div>
         </mat-step>
@@ -144,10 +91,7 @@
                 <mat-form-field appearance="outline" class="width-49">
                   <mat-label>Model</mat-label>
                   <mat-select name="Model" formControlName="model_id">
-                    <mat-option
-                      *ngFor="let item of modelData"
-                      [value]="item.id"
-                    >
+                    <mat-option *ngFor="let item of modelData" [value]="item.id">
                       {{ item.name }}
                     </mat-option>
                   </mat-select>
@@ -155,8 +99,7 @@
 
                 <mat-form-field appearance="outline" class="width-49">
                   <mat-label>
-                    <mat-icon class="form-label">person</mat-icon
-                    >&nbsp;&nbsp;Transmission
+                    <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Transmission
                   </mat-label>
                   <mat-select name="Transmission" formControlName="transmission">
                     <mat-option *ngFor="let item of transmission" [value]="item.code">
@@ -167,25 +110,15 @@
 
                 <mat-form-field class="width-49" appearance="outline">
                   <mat-label>
-                    <mat-icon class="form-label">person</mat-icon
-                    >&nbsp;&nbsp;Model Year
+                    <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Model Year
                   </mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    placeholder="Model Year"
-                    formControlName="model_year"
-                    required
-                  />
+                  <input type="text" matInput placeholder="Model Year" formControlName="model_year" required />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="width-49">
                   <mat-label>Fuel Type</mat-label>
                   <mat-select name="Fuel Types" formControlName="fuel_type">
-                    <mat-option
-                      *ngFor="let item of fuelTypesData"
-                      [value]="item.code"
-                    >
+                    <mat-option *ngFor="let item of fuelTypesData" [value]="item.code">
                       {{ item.name }}
                     </mat-option>
                   </mat-select>
@@ -193,56 +126,43 @@
 
                 <mat-form-field class="width-49" appearance="outline">
                   <mat-label>
-                    <mat-icon class="form-label">person</mat-icon
-                    >&nbsp;&nbsp;Co2
+                    <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Co2
                   </mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    placeholder="Co2"
-                    formControlName="co2"
-                    required
-                  />
+                  <input type="text" matInput placeholder="Co2" formControlName="co2" required />
                 </mat-form-field>
 
                 <mat-form-field class="width-49" appearance="outline">
                   <mat-label>
-                    <mat-icon class="form-label">person</mat-icon
-                    >&nbsp;&nbsp;Co2 Standard (g/km)
+                    <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Co2 Standard (g/km)
                   </mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    placeholder="Co2 Standard (g/km)"
-                    formControlName="co2_standard"
-                    required
-                  />
+                  <input type="text" matInput placeholder="Co2 Standard (g/km)" formControlName="co2_standard"
+                    required />
                 </mat-form-field>
               </div>
             </form>
           </div>
-            <div class="main-buttons">
+          <div class="main-buttons">
             <button mat-button class="custom-filled-button" matStepperPrevious>
-            <mat-icon>add</mat-icon>
-            Previous
+              <mat-icon>add</mat-icon>
+              Previous
             </button>
             <button mat-button class="custom-outline-button" matStepperNext>
-            <mat-icon>sync</mat-icon>
-            Reload
+              <mat-icon>sync</mat-icon>
+              Reload
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <mat-step>
           <ng-template matStepLabel>Finished</ng-template>
-         <div class="main-buttons">
-          <button mat-button matStepperPrevious class="custom-outline-button">
-            Previous
-          </button>
-          <button mat-button class="custom-filled-button" matStepperNext (click)="adddVehicle()">
-            Submit Vehicle
-          </button>
-         </div>
+          <div class="main-buttons">
+            <button mat-button matStepperPrevious class="custom-outline-button">
+              Previous
+            </button>
+            <button mat-button class="custom-filled-button" matStepperNext (click)="adddVehicle()">
+              Submit Vehicle
+            </button>
+          </div>
         </mat-step>
       </mat-horizontal-stepper>
     </section>

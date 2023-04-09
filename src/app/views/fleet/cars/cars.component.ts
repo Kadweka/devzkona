@@ -3,7 +3,10 @@ import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { ITableColumnInterface, ITableRowActions } from 'src/app/shared/interfaces/table-interface';
-import {FleetService} from '../../../core/services/fleet.service';
+import { FleetService } from '../../../core/services/fleet.service';
+import { AddFleetComponent } from '../_modal/add-fleet/add-fleet.component';
+import { MatDialog } from "@angular/material/dialog";
+
 
 @Component({
   selector: 'app-cars',
@@ -21,6 +24,7 @@ export class CarsComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private fleetService: FleetService,
     private toastr: ToasterService,
 
@@ -94,31 +98,44 @@ export class CarsComponent implements OnInit {
     this.router.navigate([`/trips/details-trip/${event.id}`]);
   }
 
+  addItem(event: any): any {
+    console.log(event, 'TESTING THE DIALOG!!!!!!!1');
+    const dialogRef = this.dialog.open(AddFleetComponent, {
+      panelClass: 'dialogClass',
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe(({ reload, data }) => {
+      if (reload) {
+        this.getVehicles();
+      }
+    });
+  }
+
   sortData(sortParameters: Sort): any {
   }
   // tslint:disable-next-line:typedef
-  getVehicles(){
+  getVehicles() {
     const payload = {
       limit: 10,
       offset: 0,
-      name:"",
+      name: "",
       token: localStorage.getItem('access_token')
     };
     this.isLoadingTableData = true;
-        // @ts-ignore
+    // @ts-ignore
     this.fleetService.getVehicles(payload).subscribe(res => {
-       if(res.result.code==200){
+      if (res.result.code == 200) {
         this.generalTableDataArray = res.result.vehicles;
-        this.totalElements=res.result.total_items
-        this.totalLength=res.result.total_items
+        this.totalElements = res.result.total_items
+        this.totalLength = res.result.total_items
         this.isLoadingTableData = false;
-      }else{
-        this.toastr.showWarning(res.result.Message,"SOMETHING IS WRONG")
+      } else {
+        this.toastr.showWarning(res.result.Message, "SOMETHING IS WRONG")
         this.isLoadingTableData = false;
       }
     });
   }
-    reload(){
+  reload() {
     this.getVehicles()
   }
 }

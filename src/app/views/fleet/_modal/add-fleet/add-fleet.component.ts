@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EmployeesService } from 'src/app/core/services/employees.service';
 import { FleetService } from 'src/app/core/services/fleet.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
@@ -14,30 +15,32 @@ export class AddFleetComponent {
   fleetFormGroup1!: UntypedFormGroup;
   fleetFormGroup2!: UntypedFormGroup;
   isLoading = false;
-  loadingModels=false
-  modelData!:any[]
-  driverData!:any[]
-  transmission=[
-      {code:'manual', name:'Munual'},
-      {code:'automatic',name:'Automatic'},
+  loadingModels = false
+  modelData!: any[]
+  driverData!: any[]
+  transmission = [
+    { code: 'manual', name: 'Munual' },
+    { code: 'automatic', name: 'Automatic' },
   ]
-  fuelTypesData=[
-      {code:'diesel', name:'Diesel'},
-      {code:'gasoline',name:'Gasoline'},
-      {code:'full_hybrid',name: 'Full Hybrid'},
-      {code:'plug_in_hybrid_diesel',name: 'Plug-in Hybrid Diesel'},
-      {code:'plug_in_hybrid_gasoline',name: 'Plug-in Hybrid Gasoline'},
-      {code:'cng',name: 'CNG'},
-      {code:'lpg',name: 'LPG'},
-      {code:'hydrogen',name: 'Hydrogen'},
-      {code:'electric',name: 'Electric'},
+  fuelTypesData = [
+    { code: 'diesel', name: 'Diesel' },
+    { code: 'gasoline', name: 'Gasoline' },
+    { code: 'full_hybrid', name: 'Full Hybrid' },
+    { code: 'plug_in_hybrid_diesel', name: 'Plug-in Hybrid Diesel' },
+    { code: 'plug_in_hybrid_gasoline', name: 'Plug-in Hybrid Gasoline' },
+    { code: 'cng', name: 'CNG' },
+    { code: 'lpg', name: 'LPG' },
+    { code: 'hydrogen', name: 'Hydrogen' },
+    { code: 'electric', name: 'Electric' },
   ]
   constructor(
     private router: Router,
     private toastr: ToasterService,
+    public dialogRef: MatDialogRef<AddFleetComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: UntypedFormBuilder,
-    private fleetService:FleetService,
-    private employeeService:EmployeesService
+    private fleetService: FleetService,
+    private employeeService: EmployeesService
   ) { }
   ngOnInit(): void {
     this.fleetFormGroup1 = this.formBuilder.group({
@@ -49,7 +52,7 @@ export class AddFleetComponent {
       doors: ['', Validators.required],
       horsepower: ['', Validators.required],
       seats: ['', Validators.required],
-      net_car_value:['',Validators.required]
+      net_car_value: ['', Validators.required]
     });
     this.fleetFormGroup2 = this.formBuilder.group({
       model_id: ['', Validators.required],
@@ -62,45 +65,51 @@ export class AddFleetComponent {
     this.getModels()
     this.getEmployees()
   }
-  getEmployees(){
-    const payload={
-      token:localStorage.getItem("access_token"),
-      name:"",
-      limit:1000,
-      offset:0
-    }
-    this.loadingModels=true
-        // @ts-ignore
-    this.employeeService.getEmployees(payload).subscribe(res=>{      
-      if(res.result.code ==200){
-        this.driverData=res.result.employee
-        this.loadingModels=false
-      }else{
-        this.toastr.showWarning(res.result.message,"SOMETHING IS WRONG!")
-      }
-    })
-  }
-  getModels(){
-    const payload={
-      token:localStorage.getItem("access_token"),
-      name:"",
-      limit:1000,
-      offset:0
-    }
-    this.loadingModels=true
-        // @ts-ignore
-    this.fleetService.getModels(payload).subscribe(res=>{      
-      if(res.result.code ==200){
-        this.modelData=res.result.model
-        this.loadingModels=false
-      }else{
-        this.toastr.showWarning(res.result.message,"SOMETHING IS WRONG!")
-      }
-    })
-  }
-  adddVehicle(){
+  getEmployees() {
     const payload = {
-      token:localStorage.getItem("access_token"),
+      token: localStorage.getItem("access_token"),
+      name: "",
+      limit: 1000,
+      offset: 0
+    }
+    this.loadingModels = true
+    // @ts-ignore
+    this.employeeService.getEmployees(payload).subscribe(res => {
+      if (res.result.code == 200) {
+        this.driverData = res.result.employee
+        this.loadingModels = false
+      } else {
+        this.toastr.showWarning(res.result.message, "SOMETHING IS WRONG!")
+      }
+    })
+  }
+
+  onCloseDialog(dialogData?: any): any {
+    const { reload = false, data = null } = dialogData || {};
+    this.dialogRef.close({ reload, data });
+  }
+
+  getModels() {
+    const payload = {
+      token: localStorage.getItem("access_token"),
+      name: "",
+      limit: 1000,
+      offset: 0
+    }
+    this.loadingModels = true
+    // @ts-ignore
+    this.fleetService.getModels(payload).subscribe(res => {
+      if (res.result.code == 200) {
+        this.modelData = res.result.model
+        this.loadingModels = false
+      } else {
+        this.toastr.showWarning(res.result.message, "SOMETHING IS WRONG!")
+      }
+    })
+  }
+  adddVehicle() {
+    const payload = {
+      token: localStorage.getItem("access_token"),
       color: this.fleetFormGroup1.get('color')?.value,
       license_plate: this.fleetFormGroup1.get('license_plate')?.value,
       driver_id: this.fleetFormGroup1.get('driver_id')?.value,
@@ -116,22 +125,22 @@ export class AddFleetComponent {
       fuel_type: this.fleetFormGroup2.get('fuel_type')?.value,
       co2: this.fleetFormGroup2.get('co2')?.value,
       co2_standard: this.fleetFormGroup2.get('co2_standard')?.value,
-    }    
-    if(this.fleetFormGroup1.valid && this.fleetFormGroup2.valid){
-      this.isLoading=true
-      this.fleetService.createVehicle(payload).subscribe(res=>{
-      if(res.result.code==200){
-        this.isLoading=false 
-        this.router.navigate([`/fleet`]);
-        this.toastr.showSuccess(res.result.message,"SUCCESS")
-      }else{
-        this.toastr.showWarning(res.result.message,"SOMETHING WENTNWRONG")
-      }
-      }) 
-    }else{
-      this.toastr.showWarning("Please fill in all information","VALIDATION ERROR!")
     }
-    this.isLoading=false
+    if (this.fleetFormGroup1.valid && this.fleetFormGroup2.valid) {
+      this.isLoading = true
+      this.fleetService.createVehicle(payload).subscribe(res => {
+        if (res.result.code == 200) {
+          this.isLoading = false
+          this.router.navigate([`/fleet`]);
+          this.toastr.showSuccess(res.result.message, "SUCCESS")
+        } else {
+          this.toastr.showWarning(res.result.message, "SOMETHING WENTNWRONG")
+        }
+      })
+    } else {
+      this.toastr.showWarning("Please fill in all information", "VALIDATION ERROR!")
+    }
+    this.isLoading = false
   }
 }
 
