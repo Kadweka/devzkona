@@ -1,0 +1,57 @@
+<section>
+  <form [formGroup]="payrollFormGroup">
+    <div>
+      <mat-form-field class="width-75" appearance="outline">
+        <mat-label>
+          <mat-icon class="form-label">person</mat-icon>&nbsp;&nbsp;Batch Name
+        </mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Batch Name"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        <mat-label> Start Date</mat-label>
+        <input
+          matInput
+          formControlName="date_start"
+          [matDatepicker]="picker2"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="width-49">
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        <mat-label> End Date</mat-label>
+        <input matInput formControlName="date_end" [matDatepicker]="picker2" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button class="custom-filled-button" (click)="new_batch()">
+        <mat-spinner
+          matSuffix
+          *ngIf="isLoading"
+          diameter="30"
+          color="accent"
+          value="60"
+        >
+        </mat-spinner>
+        <span *ngIf="!isEditing">Submit Batch</span>
+        <span *ngIf="isEditing">Update Batch Information</span>
+      </button>
+      <button mat-button class="custom-filled-button" (click)="onCloseDialog()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</section>

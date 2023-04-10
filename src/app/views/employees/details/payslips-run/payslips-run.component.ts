@@ -7,20 +7,23 @@ import { ITableColumnInterface } from 'src/app/shared/interfaces/table-interface
 import { UserCardInterface } from 'src/app/shared/interfaces/user-card-interface';
 
 @Component({
-  selector: 'app-struture-rules',
-  templateUrl: './struture-rules.component.html',
-  styleUrls: ['./struture-rules.component.scss'],
+  selector: 'app-payslips-run',
+  templateUrl: './payslips-run.component.html',
+  styleUrls: ['./payslips-run.component.scss']
 })
-export class StrutureRulesComponent {
+export class PayslipsRunComponent {
   isLoading = false;
-  structureCode: any;
+  batchData: any;
+  loadBatch=false
   currency: any;
   structureData: any;
   generalTableColumns: ITableColumnInterface[] = [];
   userCardData!: UserCardInterface;
+  // multipleBtns: IMultipleButtons[] = [];
   isLoadingTableData = false;
   generalTableDataArray: any[] = [];
   page = 1;
+  batchCode=""
   pageSize = 50;
   totalLength!: number;
   totalElements!: number;
@@ -30,7 +33,7 @@ export class StrutureRulesComponent {
     private toastr: ToasterService
   ) {
     this.activatedRoute.params.subscribe((params) => {
-      this.structureCode = params.id;
+      this.batchCode = params.id;
     });
   }
 
@@ -44,31 +47,39 @@ export class StrutureRulesComponent {
       phone: '',
     };
     this.initializeColumns();
-    this.getStructure();
+    // this.getCalculations();
     this.currency = localStorage.getItem('currency');
+    this.getBatch()
   }
   initializeColumns(): void {
     this.generalTableColumns = [
       {
         name: 'NAME',
-        dataKey: 'name',
+        dataKey: 'employee',
         position: 'left',
         isSortable: true,
         searchKey: 'NAME',
       },
       {
-        name: 'CODE',
-        dataKey: 'code',
+        name: 'BASIC',
+        dataKey: 'basic',
         position: 'left',
         isSortable: true,
-        searchKey: 'CODE',
+        searchKey: 'BASIC',
       },
       {
-        name: 'MOBILE',
-        dataKey: 'category_id',
+        name: 'GROSS',
+        dataKey: 'gross',
         position: 'left',
         isSortable: true,
-        searchKey: 'MOBILE'
+        searchKey: 'GROSS'
+      },
+      {
+        name: 'NET',
+        dataKey: 'net',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'NET'
       },
       {
         name: 'ACTIONS',
@@ -78,33 +89,28 @@ export class StrutureRulesComponent {
       }
     ];
   }
-  getStructure() {
+  getBatch(){    
     const payload = {
       limit: 10,
       offset: 0,
-      structure_id: this.structureCode,
-      token: localStorage.getItem('access_token'),
+      name:"",
+      batch_id:this.batchCode,
+      token: localStorage.getItem('access_token')
     };
-    this.isLoading = true;
-    // @ts-ignore
-    this.employeeService.getStructureDetails(payload).subscribe((res) => {
-      if (res.result.code == 200) {
-        this.userCardData = {
-          id: 'STRUCTURE: BASE',
-          institution: '',
-          location: res.result.information.country,
-          name: res.result.information.name,
-          email: res.result.information.employee_email,
-          phone: res.result.information.employee_phone,
-        };
-        this.structureData = res.result.information;
-        this.generalTableDataArray=res.result.rules
-        this.isLoading = false;
-      } else {
-        this.toastr.showWarning(res.result.Message, 'SOMETHING IS WRONG');
-        this.isLoading = false;
+    this.loadBatch=true
+        // @ts-ignore
+    this.employeeService.get_batch_details(payload).subscribe(res=>{
+      if(res.result.code==200){
+         this.batchData=res.result.batch
+         this.generalTableDataArray=res.result.batchValues
+         this.totalElements=res.result.total_items
+         this.totalLength=res.result.total_items
+         this.isLoading=false
+      }else{
+        this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG")
+        this.isLoading=false
       }
-    });
+    })
   }
   sortData(sortParameters: Sort): any {
   }

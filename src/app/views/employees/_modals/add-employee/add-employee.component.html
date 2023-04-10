@@ -77,10 +77,10 @@
                                   >&nbsp;&nbsp;Mobile
                                 </mat-label>
                                 <input
-                                  type="number"
+                                  type="text"
                                   matInput
                                   placeholder="Mobile"
-                                  formControlName="mobile_phone"
+                                  formControlName="work_phone"
                                   
                                 />
                               </mat-form-field>
@@ -247,7 +247,14 @@
                             Back
                           </button>
                           <button mat-button class="custom-filled-button" (click)="addEmployee()">
-                            Submit Employee
+                            <mat-spinner matSuffix
+                            *ngIf="isLoading"
+                            diameter="30"
+                            color="accent"
+                            value="60">
+               </mat-spinner>
+                            <span *ngIf="!isEditing">Submit Employee</span>
+                            <span *ngIf="isEditing">Update Employee information</span>
                           </button>
                         </div>
                        </form>

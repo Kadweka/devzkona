@@ -32,6 +32,10 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/employees', query);
   }
+  get_batch_details(query: QueryParams): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/get_batch_details', query);
+  }
   getContracts(query: QueryParams): Observable<any> {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/contracts', query);
@@ -40,9 +44,9 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/structure', query);
   }
-  getPaylsips(query: QueryParams): Observable<any> {
+  get_batch(query: QueryParams): Observable<any> {
     // @ts-ignore
-    return this.http.post(this.baseUrl + '/get_payslips', query);
+    return this.http.post(this.baseUrl + '/get_batch', query);
   }
   getEmployeeDetails(query: QueryParams): Observable<any> {
     // @ts-ignore
@@ -59,6 +63,14 @@ export class EmployeesService {
   updateDepartments(payload:any): Observable<any> {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/update_department', payload);
+  }
+  updateEmployees(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/update_employee', payload);
+  }
+  updateContracts(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/update_contract', payload);
   }
 }
 // employee_details

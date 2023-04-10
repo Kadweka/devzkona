@@ -34,10 +34,7 @@ export class AddDepartmentComponent implements OnInit {
     this.getEmployees()
     if(this.data.id){
       this.isEditing=true
-      this.departmentrFormGroup.patchValue({
-        manager_id:this.data.manager_id,
-        name:this.data.name
-      })
+      this.departmentrFormGroup.patchValue(this.data)
     }
   }
   onCloseDialog(dialogData?: any): any {

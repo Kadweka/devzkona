@@ -39,6 +39,7 @@ export class AddEmployeeComponent implements OnInit {
   departments: any[] = []
   loadingCountry = false
   country: any[] = []
+  isEditing=false
   constructor(
     private router: Router,
     private formBuilder: UntypedFormBuilder,
@@ -52,7 +53,7 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.employeeFormGroup1 = this.formBuilder.group({
       name: ['', Validators.required],
-      mobile_phone: ['', [Validators.required]],
+      work_phone: ['', [Validators.required]],
       work_email: [''],
       birthday: [''],
       gender: [],
@@ -74,6 +75,16 @@ export class AddEmployeeComponent implements OnInit {
     this.getEmployees()
     this.getDepartments()
     this.getCountries()
+    if(this.data.action=="EDIT"){
+      console.log(this.data.element);
+      
+      this.isEditing=true
+      this.employeeFormGroup1.patchValue(this.data.element)
+      this.employeeFormGroup2.patchValue(this.data.element)
+      
+    }else{
+      this.isEditing=false
+    }
   }
   getEmployees() {
     const payload = {
@@ -114,41 +125,72 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
   addEmployee() {
-    console.log(this.employeeFormGroup1.getRawValue(), this.employeeFormGroup2.getRawValue(), "THE ROW VALUES!!!!!!!11");
-    console.log(this.employeeFormGroup2.getRawValue(), "THE ROW VALUES!!!!!!!222");
-    const payload = {
-      name: this.employeeFormGroup1.get('name')?.value,
-      gender: this.employeeFormGroup1.get('gender')?.value,
-      marital: this.employeeFormGroup1.get('marital')?.value,
-      birthday: this.employeeFormGroup1.get('birthday')?.value,
-      mobile_phone: this.employeeFormGroup1.get('mobile_phone')?.value,
-      work_email: this.employeeFormGroup1.get('work_email')?.value,
-      country_id: this.employeeFormGroup1.get('country_id')?.value,
-      identification_id: this.employeeFormGroup1.get('identification_id')?.value,
-      passport_id: this.employeeFormGroup1.get('passport_id')?.value,
-      token: localStorage.getItem('access_token'),
-      kra: this.employeeFormGroup2.get('kra')?.value,
-      employee_type: this.employeeFormGroup2.get('employee_type')?.value,
-      huduma: this.employeeFormGroup2.get('huduma')?.value,
-      nhif: this.employeeFormGroup2.get('nhif')?.value,
-      parent_id: this.employeeFormGroup2.get('parent_id')?.value,
-      nssf: this.employeeFormGroup2.get('nssf')?.value,
-      department_id: this.employeeFormGroup2.get('department_id')?.value,
-      job_title: this.employeeFormGroup2.get('job_title')?.value,
-
-    }
     if (this.employeeFormGroup1.valid && this.employeeFormGroup2.valid) {
       this.isLoading = true
-      this.employeeService.createEmployee(payload).subscribe(res => {
-        if (res.result.code == 200) {
-          this.toastr.showSuccess(res.result.message, "SUCCESS")
-          this.isLoading = false
-          this.onCloseDialog({ reload: true })
-          this.router.navigate([`/employees`])
-        } else {
-          this.toastr.showWarning(res.result.message, "SOMETHING WENT WRONG!")
+        if(this.isEditing){
+          const payload = {
+            name: this.employeeFormGroup1.get('name')?.value,
+            gender: this.employeeFormGroup1.get('gender')?.value,
+            marital: this.employeeFormGroup1.get('marital')?.value,
+            birthday: this.employeeFormGroup1.get('birthday')?.value,
+            work_phone: this.employeeFormGroup1.get('work_phone')?.value,
+            work_email: this.employeeFormGroup1.get('work_email')?.value,
+            country_id: this.employeeFormGroup1.get('country_id')?.value,
+            identification_id: this.employeeFormGroup1.get('identification_id')?.value,
+            passport_id: this.employeeFormGroup1.get('passport_id')?.value,
+            token: localStorage.getItem('access_token'),
+            kra: this.employeeFormGroup2.get('kra')?.value,
+            employee_type: this.employeeFormGroup2.get('employee_type')?.value,
+            huduma: this.employeeFormGroup2.get('huduma')?.value,
+            nhif: this.employeeFormGroup2.get('nhif')?.value,
+            parent_id: this.employeeFormGroup2.get('parent_id')?.value,
+            nssf: this.employeeFormGroup2.get('nssf')?.value,
+            department_id: this.employeeFormGroup2.get('department_id')?.value,
+            job_title: this.employeeFormGroup2.get('job_title')?.value,
+            employee_id:this.data.element.id
+          }
+          this.employeeService.updateEmployees(payload).subscribe(res => {
+            if (res.result.code == 200) {
+              this.toastr.showSuccess(res.result.message, "SUCCESS")
+              this.isLoading = false
+              this.onCloseDialog({ reload: true })
+              this.router.navigate([`/employees`])
+            } else {
+              this.toastr.showWarning(res.result.message, "SOMETHING WENT WRONG!")
+            }
+          })
+        }else{
+          const payload = {
+            name: this.employeeFormGroup1.get('name')?.value,
+            gender: this.employeeFormGroup1.get('gender')?.value,
+            marital: this.employeeFormGroup1.get('marital')?.value,
+            birthday: this.employeeFormGroup1.get('birthday')?.value,
+            work_phone: this.employeeFormGroup1.get('work_phone')?.value,
+            work_email: this.employeeFormGroup1.get('work_email')?.value,
+            country_id: this.employeeFormGroup1.get('country_id')?.value,
+            identification_id: this.employeeFormGroup1.get('identification_id')?.value,
+            passport_id: this.employeeFormGroup1.get('passport_id')?.value,
+            token: localStorage.getItem('access_token'),
+            kra: this.employeeFormGroup2.get('kra')?.value,
+            employee_type: this.employeeFormGroup2.get('employee_type')?.value,
+            huduma: this.employeeFormGroup2.get('huduma')?.value,
+            nhif: this.employeeFormGroup2.get('nhif')?.value,
+            parent_id: this.employeeFormGroup2.get('parent_id')?.value,
+            nssf: this.employeeFormGroup2.get('nssf')?.value,
+            department_id: this.employeeFormGroup2.get('department_id')?.value,
+            job_title: this.employeeFormGroup2.get('job_title')?.value,
+          }
+          this.employeeService.createEmployee(payload).subscribe(res => {
+            if (res.result.code == 200) {
+              this.toastr.showSuccess(res.result.message, "SUCCESS")
+              this.isLoading = false
+              this.onCloseDialog({ reload: true })
+              this.router.navigate([`/employees`])
+            } else {
+              this.toastr.showWarning(res.result.message, "SOMETHING WENT WRONG!")
+            }
+          })
         }
-      })
     } else {
       this.toastr.showWarning("Invalid form", "VALIDATION ERROR")
     }

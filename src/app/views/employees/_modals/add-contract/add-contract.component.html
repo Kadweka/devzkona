@@ -63,10 +63,10 @@
           <mat-form-field class="width-49" appearance="outline">
             <mat-label>
               <mat-icon class="form-label">person</mat-icon
-              >&nbsp;&nbsp;Name
+              >&nbsp;&nbsp;Travell Allowance
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Travell Allowance"
               formControlName="travel_allowance"
@@ -80,7 +80,7 @@
               >&nbsp;&nbsp;Medical Allowance
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Medical Allowance"
               formControlName="medical_allowance"
@@ -94,7 +94,7 @@
               >&nbsp;&nbsp;Other Allowance
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Other Allowance"
               formControlName="other_allowance"
@@ -109,7 +109,7 @@
               >&nbsp;&nbsp;wage
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Wage"
               formControlName="wage"
@@ -123,7 +123,7 @@
               >&nbsp;&nbsp;Sacco Loan
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Sacco Loan"
               formControlName="sacco_loan"
@@ -138,7 +138,7 @@
               >&nbsp;&nbsp;Sacco Saving
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Sacco Saving"
               formControlName="sacco_saving"
@@ -153,7 +153,7 @@
               >&nbsp;&nbsp;Bank Loan
             </mat-label>
             <input
-              type="number"
+              type="text"
               matInput
               placeholder="Bank Loan"
               formControlName="bank_loan"
@@ -163,7 +163,14 @@
         </div>
         <div>
           <button mat-button class="custom-filled-button" (click)="new_contract()">
-            Submit Contract
+            <mat-spinner matSuffix
+            *ngIf="isLoading"
+            diameter="30"
+            color="accent"
+            value="60">
+</mat-spinner>
+<span *ngIf="!isEditing">Submit Contract</span>
+<span *ngIf="isEditing">Update Contract Information</span>
           </button>
           <button mat-button class="custom-filled-button" (click)="onCloseDialog()">
             Cancel

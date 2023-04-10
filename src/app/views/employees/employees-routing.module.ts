@@ -10,7 +10,8 @@ import { EmployeeDetailsComponent } from './details/employee-details/employee-de
 import { ContractDetailsComponent } from './details/contract-details/contract-details.component';
 import { StrutureRulesComponent } from './details/struture-rules/struture-rules.component';
 import { PayrollComponent } from './payroll/payroll.component';
-import { RunningPayrollCenterComponent } from './running-payroll-center/running-payroll-center.component';
+import { RunningPayrollCenterComponent } from './_modals/running-payroll-center/running-payroll-center.component';
+import { PayslipsRunComponent } from './details/payslips-run/payslips-run.component';
 
 const routes: Routes = [
   {
@@ -53,8 +54,8 @@ const routes: Routes = [
         component: StrutureRulesComponent,
       },
       {
-        path: 'running-payroll',
-        component: RunningPayrollCenterComponent,
+        path: 'calculate-payslips/:id',
+        component: PayslipsRunComponent,
       },
       {
         path: 'contract-details/:id',

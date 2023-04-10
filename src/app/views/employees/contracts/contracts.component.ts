@@ -43,7 +43,7 @@ export class ContractsComponent implements OnInit {
       },
       {
         name: 'EMPPLOYEE',
-        dataKey: 'employee_id',
+        dataKey: 'employee',
         position: 'left',
         isSortable: true,
         searchKey: 'EMAIL',
@@ -91,8 +91,16 @@ export class ContractsComponent implements OnInit {
   }
 
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      const dialogRef = this.dialog.open(AddContractComponent, {
+        panelClass: 'dialogClass',
+        data: action,
+      });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getContracts();
+        }
+      });
     }
   }
 

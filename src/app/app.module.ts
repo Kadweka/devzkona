@@ -13,9 +13,11 @@ import { DefaultModule } from './layout/default/default.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthGuard } from './core/guard/auth.guard';
 import { IdlelogoutService } from './core/services/helper/idlelogout.service';
+import { ReportsTemplateComponent } from './views/reports-template/reports-template.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReportsTemplateComponent
   ],
   imports: [
     BrowserModule,

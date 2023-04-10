@@ -80,7 +80,7 @@ export class AddProductComponent implements OnInit {
         "detailed_type":this.productFormGroup.get("detailed_type")?.value,
         "list_price":this.productFormGroup.get("list_price")?.value,
         "categ_id":this.productFormGroup.get("categ_id")?.value,
-        "category_id":this.data.id
+        "product_id":this.data.id
       }
       this.categoryService.updateProduct(payload).subscribe(res=>{
       if(res.result.code==200){

@@ -7,8 +7,8 @@ import {SummaryDetailsInterface} from '../../interfaces/summary-details-interfac
   styleUrls: ['./summary-details.component.scss'],
 })
 export class SummaryDetailsComponent implements OnInit, OnChanges {
-  @Input() LHSSummaryData: SummaryDetailsInterface[];
-  @Input() RHSSummaryData: SummaryDetailsInterface[];
+  @Input() LHSSummaryData!: SummaryDetailsInterface[];
+  @Input() RHSSummaryData!: SummaryDetailsInterface[];
   @Input() dataSource: any;
 
   constructor() {
@@ -26,11 +26,11 @@ export class SummaryDetailsComponent implements OnInit, OnChanges {
   private mapSummaryDetails(data: any): void {
     this.LHSSummaryData = this.LHSSummaryData.map((summary) => ({
       ...summary,
-      value: data[summary.dataKey] || summary.defaultValue,
+      value: data[summary.dataKey!] || summary.defaultValue,
     }));
     this.RHSSummaryData = this.RHSSummaryData.map((summary) => ({
       ...summary,
-      value: data[summary.dataKey] || summary.defaultValue,
+      value: data[summary.dataKey!] || summary.defaultValue,
     }));
   }
 

@@ -14,7 +14,8 @@ import { ContractDetailsComponent } from './details/contract-details/contract-de
 import { EmployeeDetailsComponent } from './details/employee-details/employee-details.component';
 import { StrutureRulesComponent } from './details/struture-rules/struture-rules.component';
 import { PayrollComponent } from './payroll/payroll.component';
-import { RunningPayrollCenterComponent } from './running-payroll-center/running-payroll-center.component';
+import { RunningPayrollCenterComponent } from './_modals/running-payroll-center/running-payroll-center.component';
+import { PayslipsRunComponent } from './details/payslips-run/payslips-run.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,9 @@ import { RunningPayrollCenterComponent } from './running-payroll-center/running-
     EmployeeDetailsComponent, 
     EditEmployeeComponent, 
     EmployeeListingComponent, 
-    EmployeeTabsComponent, AddContractComponent, ContractDetailsComponent, StrutureRulesComponent, PayrollComponent, RunningPayrollCenterComponent],
+    EmployeeTabsComponent, AddContractComponent, ContractDetailsComponent, StrutureRulesComponent, PayrollComponent, RunningPayrollCenterComponent, PayslipsRunComponent],
   imports: [
     EmployeesRoutingModule,
-    CommonModule,
     SharedModule
   ]
 })

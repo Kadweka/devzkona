@@ -49,6 +49,13 @@ export class EmployeeListingComponent implements OnInit {
         searchKey: 'NAME',
       },
       {
+        name: 'GENDER',
+        dataKey: 'gender',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'GENDER',
+      },
+      {
         name: 'EMAIL',
         dataKey: 'work_email',
         position: 'left',
@@ -88,8 +95,16 @@ export class EmployeeListingComponent implements OnInit {
 
 
   doTableActions(action: ITableRowActions): void {
-    if (action.action === 'View') {
-      this.router.navigate([`/member/member-details/${action.element.code}`]);
+    if (action.action === 'EDIT') {
+      const dialogRef = this.dialog.open(AddEmployeeComponent, {
+        panelClass: 'dialogClass',
+        data: action,
+      });
+      dialogRef.afterClosed().subscribe(({reload, data}) => {
+        if (reload) {
+          this.getEmployees();
+        }
+      });
     }
   }
 

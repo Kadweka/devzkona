@@ -33,7 +33,7 @@ import {RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ToasterComponent } from './widgets/toaster/toaster.component';
-
+import { SummaryDetailsComponent } from './widgets/summary-details/summary-details.component';
 
 
 const materialModules = [
@@ -71,6 +71,7 @@ const components = [
   TableGeneralComponent,
   BackBtnComponent,
   UserCardComponent,
+  SummaryDetailsComponent
 ];
 @NgModule({
   declarations: [
