@@ -34,8 +34,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ToasterComponent } from './widgets/toaster/toaster.component';
 import { SummaryDetailsComponent } from './widgets/summary-details/summary-details.component';
-
-
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 const materialModules = [
   // tslint:disable-next-line:max-line-length
   MatDividerModule,
@@ -54,6 +53,7 @@ const materialModules = [
   MatPaginatorModule,
   MatSortModule,
   MatDatepickerModule,
+  MatProgressBarModule,
   MatNativeDateModule,
   MatRadioModule,
   CommonModule,

@@ -16,6 +16,10 @@ export class EmployeesService {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/department', payload);
   }
+  createPayslips(payload:any): Observable<any> {
+    // @ts-ignore
+    return this.http.post(this.baseUrl + '/run_payroll', payload);
+  }
   createEmployee(payload:any): Observable<any> {
     // @ts-ignore
     return this.http.post(this.baseUrl + '/create_employee', payload);

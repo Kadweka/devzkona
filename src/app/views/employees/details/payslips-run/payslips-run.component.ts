@@ -19,7 +19,7 @@ export class PayslipsRunComponent {
   structureData: any;
   generalTableColumns: ITableColumnInterface[] = [];
   userCardData!: UserCardInterface;
-  // multipleBtns: IMultipleButtons[] = [];
+  loadingNew =false;
   isLoadingTableData = false;
   generalTableDataArray: any[] = [];
   page = 1;
@@ -47,7 +47,6 @@ export class PayslipsRunComponent {
       phone: '',
     };
     this.initializeColumns();
-    // this.getCalculations();
     this.currency = localStorage.getItem('currency');
     this.getBatch()
   }
@@ -80,6 +79,13 @@ export class PayslipsRunComponent {
         position: 'left',
         isSortable: true,
         searchKey: 'NET'
+      },
+      {
+        name: 'STATUS',
+        dataKey: 'status',
+        position: 'left',
+        isSortable: true,
+        searchKey: 'STATUS'
       },
       {
         name: 'ACTIONS',
@@ -117,5 +123,26 @@ export class PayslipsRunComponent {
     onPageChange(data: any): any {
     this.page = data?.pageIndex + 1;
     this.pageSize = data?.pageSize;
+  }
+  reload(){
+    this.getBatch()
+  }
+  createPayslips(value:any){
+    const payload={
+      "batch_id":this.batchCode,
+      "token":localStorage.getItem('access_token'),
+      "type":value
+    }
+    this.loadingNew=true
+    this.employeeService.createPayslips(payload).subscribe(res=>{
+      if(res.result.code == 200){
+        this.toastr.showSuccess(res.result.message,"PAYSLIPS CREATED")
+        this.loadingNew=false
+        this.getBatch()
+      }else{
+        this.toastr.showWarning(res.result.message,"SOMETHING WENT WRONG!!")
+        this.loadingNew=false
+      }
+    })
   }
 }

@@ -1,36 +1,111 @@
 <section>
-        <app-back-btn></app-back-btn>
-        <section *ngIf="!isLoading">
-                    <ul>
-                        <li *ngIf="batchData.name">
-                            <mat-icon>calender</mat-icon>
-                            <span>NAME: <b>{{batchData.name}}</b></span>
-                        </li>
-                        <li *ngIf="batchData.date_from">
-                            <mat-icon>calender</mat-icon>
-                            <span>DATE FROM.: <b>{{batchData.date_from}}</b></span>
-                        </li>
-                        <li *ngIf="batchData.date_to">
-                            <mat-icon>calender</mat-icon>
-                            <span>DATE TO: <b>{{batchData.date_to}}</b></span>
-                        </li>
-                    </ul>
-        </section>
-    <section *ngIf="!isLoading">
-        <section class="mt-5">
-          <mat-spinner
-            *ngIf="isLoadingTableData"
-            diameter="60"
-            color="primary"
-            value="60">
-          </mat-spinner>
-            <app-table-general [tableData]="generalTableDataArray" [tableColumns]="generalTableColumns"
-                [hasStatusFilter]="false" [isFilterable]="true" [isPageable]="true" [totalLength]="totalElements"
-                [paginationSizes]="[50, 70, 100]" [defaultPageSize]="50" [pageRouterLink]="'employee-details'"
-                (sort)="sortData($event)"
-                [hideEmptyMessage]="isLoadingTableData"
-                (pageChangedAction)="onPageChange($event)">
-            </app-table-general>
-        </section>
+  <app-back-btn></app-back-btn>
+  <section *ngIf="!isLoading">
+    <ul>
+      <li *ngIf="batchData.name">
+        <mat-icon>calender</mat-icon>
+        <span
+          >NAME: <b>{{ batchData.name }}</b></span
+        >
+      </li>
+      <li *ngIf="batchData.date_from">
+        <mat-icon>calender</mat-icon>
+        <span
+          >DATE FROM.: <b>{{ batchData.date_from }}</b></span
+        >
+      </li>
+      <li *ngIf="batchData.date_to">
+        <mat-icon>calender</mat-icon>
+        <span
+          >DATE TO: <b>{{ batchData.date_to }}</b></span
+        >
+      </li>
+      <li *ngIf="batchData.status">
+        <mat-icon>state</mat-icon>
+        <span
+          >STATUS: <b>{{ batchData.status }}</b></span
+        >
+      </li>
+    </ul>
+  </section>
+  <mat-card class="downloading-report" *ngIf="loadingNew">
+    <mat-card-title>Creating payslips</mat-card-title>
+    <br />
+    <mat-spinner diameter="60" color="primary" value="60" class="text-center"> </mat-spinner>
+    <br />
+    <mat-card-content>
+      <p>Please wait as we do payslip calculations..</p>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+  <section *ngIf="batchData.status != 'done'" class="mt-2">
+
+    <div class="main-buttons">
+      <button mat-button class="custom-outline-button" (click)="reload()">
+        <mat-icon>sync</mat-icon>
+        Reload
+      </button>
+      <button
+        mat-button
+        class="custom-filled-button"
+        (click)="createPayslips('NEW')"
+        *ngIf="generalTableDataArray.length <1"
+      >
+        <mat-icon>add</mat-icon>
+        New
+      </button>
+      <button
+      mat-button
+      class="custom-filled-button"
+      (click)="createPayslips('RE-RUN')"
+      *ngIf="generalTableDataArray.length >0"
+    >
+      <mat-icon>add</mat-icon>
+      Update Payslips
+    </button>
+
+      <button mat-button class="custom-outline-button">
+        <mat-icon>download</mat-icon>
+        Print
+      </button>
+      <button
+      mat-button
+      class="custom-filled-button"
+      (click)="createPayslips('CONFIRM')"
+      *ngIf="generalTableDataArray.length >0"
+    >
+      <mat-icon>add</mat-icon>
+      Confirm Payslips
+    </button>
+    </div>
+  </section>
+  <section *ngIf="!isLoading">
+    <section class="mt-5">
+      <mat-spinner
+        *ngIf="isLoadingTableData"
+        diameter="60"
+        color="primary"
+        value="60"
+      >
+      </mat-spinner>
+      <app-table-general
+        [tableData]="generalTableDataArray"
+        [tableColumns]="generalTableColumns"
+        [hasStatusFilter]="false"
+        [isFilterable]="true"
+        [isPageable]="true"
+        [totalLength]="totalElements"
+        [paginationSizes]="[50, 70, 100]"
+        [defaultPageSize]="50"
+        [pageRouterLink]="'employee-details'"
+        (sort)="sortData($event)"
+        [tableActions]="['VALIDATE', 'VOID']"
+        [hideEmptyMessage]="isLoadingTableData"
+        (pageChangedAction)="onPageChange($event)"
+      >
+      </app-table-general>
     </section>
+  </section>
 </section>
